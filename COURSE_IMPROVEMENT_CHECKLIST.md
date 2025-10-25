@@ -34,9 +34,9 @@ This checklist organizes improvements needed to transform this course from a sol
 
 ### Project Structure
 - [x] Add detailed directory structure to README
-- [ ] Create subdirectories for all 8 weeks:
-  - [ ] `week-2/` through `week-8/` with placeholder READMEs
-  - [ ] Consistent structure: `notebooks/`, `exercises/`, `notes/`
+- [x] Create subdirectories for all 8 weeks:
+  - [x] `week-2/` through `week-8/` with placeholder READMEs
+  - [x] Consistent structure: `notebooks/`, `exercises/`, `notes/`
 - [x] Add `scripts/` directory for helper utilities
 - [x] Add `data/` directory with .gitkeep (exclude from git except metadata)
 - [x] Create `templates/` directory for reports and notebooks
