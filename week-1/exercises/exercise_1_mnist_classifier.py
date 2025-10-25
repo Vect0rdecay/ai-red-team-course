@@ -18,17 +18,24 @@ accuracy will be reduced to <5% using adversarial samples in Week 3.
 # ============================================================================
 # STEP 1: IMPORT REQUIRED LIBRARIES
 # ============================================================================
+# torch: Core PyTorch library for neural networks and tensors
 import torch
+# torch.nn: Neural network layers (Conv2d, Linear, ReLU, etc.)
 import torch.nn as nn
+# torch.optim: Optimizers (Adam, SGD) for training
 import torch.optim as optim
+# DataLoader: Helps load data in batches during training
 from torch.utils.data import DataLoader
+# datasets, transforms: Pre-built datasets and image transformations
 from torchvision import datasets, transforms
+# matplotlib: For plotting and visualization
 import matplotlib.pyplot as plt
+# numpy: Numerical operations
 import numpy as np
 import os
 from pathlib import Path
 
-# Set random seed for reproducibility
+# Set random seed for reproducibility - ensures same results each run
 torch.manual_seed(42)
 np.random.seed(42)
 
@@ -38,10 +45,11 @@ print(f"CUDA available: {torch.cuda.is_available()}")
 # ============================================================================
 # STEP 2: SET DEVICE AND PATHS
 # ============================================================================
+# Choose GPU if available, otherwise use CPU. GPUs are much faster for training
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
-# Create directory for saving models
+# Create directory for saving trained models (we'll load this in Week 3)
 model_dir = Path(__file__).parent.parent.parent / "models"
 model_dir.mkdir(parents=True, exist_ok=True)
 
@@ -58,16 +66,18 @@ transform = transforms.Compose([
 ])
 
 print("\nDownloading MNIST dataset...")
+# MNIST: 60,000 training images and 10,000 test images of handwritten digits (0-9)
+# Each image is 28x28 pixels, grayscale
 train_dataset = datasets.MNIST(
     root='./data',
-    train=True,
+    train=True,    # Get training set (60,000 images)
     download=True,
     transform=transform
 )
 
 test_dataset = datasets.MNIST(
     root='./data',
-    train=False,
+    train=False,   # Get test set (10,000 images) - used to evaluate model performance
     download=True,
     transform=transform
 )
@@ -75,9 +85,12 @@ test_dataset = datasets.MNIST(
 print(f"Training samples: {len(train_dataset)}")
 print(f"Test samples: {len(test_dataset)}")
 
-# Create data loaders
+# DataLoader splits dataset into batches for efficient training
+# batch_size: How many images to process at once (larger = faster but needs more memory)
 batch_size = 64
+# shuffle=True: Randomize order to prevent model memorizing sequence
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+# shuffle=False: Test data order doesn't matter
 test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
 # Visualize sample images
@@ -99,29 +112,36 @@ class MNIST_CNN(nn.Module):
     """
     Simple CNN for MNIST classification.
     
+    CNN (Convolutional Neural Network): Best for image recognition
     Architecture:
-    - Conv1: 1 -> 32 channels
-    - Pool1: Max pooling 2x2
-    - Conv2: 32 -> 64 channels
+    - Conv1: 1 -> 32 channels (detect simple features like edges)
+    - Pool1: Max pooling 2x2 (reduce size, keep important info)
+    - Conv2: 32 -> 64 channels (detect complex features like shapes)
     - Pool2: Max pooling 2x2
-    - FC1: 64*5*5 -> 128
-    - FC2: 128 -> 10 (classes)
+    - FC1: 64*7*7 -> 128 (fully connected layer for classification)
+    - FC2: 128 -> 10 (final output: probability for each digit 0-9)
     """
     def __init__(self):
         super(MNIST_CNN, self).__init__()
         
-        # Convolutional layers
+        # Conv2d: Applies filters to detect image features
+        # Input: 1 channel (grayscale), Output: 32 filters
+        # kernel_size=3: 3x3 filter, padding=1: keeps image size same
         self.conv1 = nn.Conv2d(1, 32, kernel_size=3, padding=1)
+        # Input: 32 channels, Output: 64 filters (more complex features)
         self.conv2 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
         
-        # Pooling
+        # MaxPool2d: Reduces image size by taking max value in each 2x2 region
+        # This makes network faster and reduces overfitting
         self.pool = nn.MaxPool2d(2, 2)
         
-        # Fully connected layers
+        # Linear layers: Fully connected layers for final classification
+        # 64*7*7: flattened feature map size after conv layers
         self.fc1 = nn.Linear(64 * 7 * 7, 128)
+        # Output layer: 10 classes (digits 0-9)
         self.fc2 = nn.Linear(128, 10)
         
-        # Activation
+        # ReLU: Activation function that adds non-linearity (neural networks need this!)
         self.relu = nn.ReLU()
         
     def forward(self, x):
@@ -150,11 +170,15 @@ print(f"\nModel created with {sum(p.numel() for p in model.parameters()):,} para
 # ============================================================================
 # STEP 5: DEFINE LOSS FUNCTION AND OPTIMIZER
 # ============================================================================
+# Loss function: Measures how wrong our predictions are
+# CrossEntropyLoss: Standard for multi-class classification (10 digits)
 # TODO: Choose appropriate loss function for multi-class classification
 # HINT: Use nn.CrossEntropyLoss() for classification tasks
 
 criterion = None  # Replace with your implementation
 
+# Optimizer: Updates model weights to reduce loss (learning)
+# Adam: Adaptive learning rate optimizer (works well for most problems)
 # TODO: Choose optimizer and set learning rate
 # HINT: Adam optimizer with lr=0.001 is a good starting point
 optimizer = None  # Replace with your implementation
@@ -171,22 +195,26 @@ else:
 # ============================================================================
 def train_epoch(model, train_loader, criterion, optimizer, device):
     """Train for one epoch."""
-    model.train()
+    model.train()  # Set model to training mode (enables dropout, batch norm)
     running_loss = 0.0
     correct = 0
     total = 0
     
+    # Loop through batches of images and labels
     for images, labels in train_loader:
+        # Move data to GPU if available (much faster)
         images, labels = images.to(device), labels.to(device)
         
+        # Forward pass: Get model predictions
         # TODO: Forward pass
-        # 1. Zero gradients: optimizer.zero_grad()
-        # 2. Get model outputs: outputs = model(images)
-        # 3. Calculate loss: loss = criterion(outputs, labels)
+        # 1. Zero gradients: optimizer.zero_grad() - clear old gradients
+        # 2. Get model outputs: outputs = model(images) - prediction probabilities
+        # 3. Calculate loss: loss = criterion(outputs, labels) - how wrong we are
         
+        # Backward pass: Update model weights based on error
         # TODO: Backward pass
-        # 1. Compute gradients: loss.backward()
-        # 2. Update weights: optimizer.step()
+        # 1. Compute gradients: loss.backward() - calculate gradients
+        # 2. Update weights: optimizer.step() - improve predictions
         
         # Track metrics
         running_loss += loss.item()
