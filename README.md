@@ -41,38 +41,41 @@ All exercises include comprehensive educational comments explaining ML/AI concep
 **Exercises** (85% complete with TODOs):
 1. **Exercise 1**: MNIST CNN Classifier (`week-1/exercises/exercise_1_mnist_classifier.py`)
    - Build and train CNN for MNIST classification
-   - Understand CNN architecture, training loop, data loading
-   - Learn PyTorch fundamentals
+   - Implement CNN architecture layers (Conv2d, MaxPool2d, Linear, ReLU)
+   - Configure training loop with loss functions and optimizers
+   - Apply PyTorch fundamentals to model development
 2. **Exercise 2**: Model Queries (`week-1/exercises/exercise_2_model_queries.py`)
-   - Interact with trained models programmatically
-   - Get predictions, softmax outputs, confidence scores
-   - Foundation for reconnaissance in AI red teaming
+   - Query trained models programmatically to extract predictions
+   - Apply softmax to convert logits to probabilities
+   - Extract confidence scores and predicted classes
+   - Practice reconnaissance techniques for AI red teaming
 3. **Exercise 3**: Text Generator (`week-1/exercises/exercise_3_text_generator.py`)
    - Build simple RNN/LSTM for character-level text generation
-   - Understand generative models (prepares for LLM attacks)
-   - Learn embeddings, LSTM layers, autoregressive generation
+   - Implement embedding layers, LSTM processing, and output layers
+   - Apply autoregressive generation with temperature sampling
+   - Prepare foundations for LLM attack methods
 
 **Required Reading**: Géron Ch. 1–2, Sotiropoulos Ch. 1
-**Deliverables**: Complete TODOs in all three exercises; understand core ML concepts
+**Deliverables**: Complete TODOs in all three exercises; demonstrate knowledge of core ML concepts through implementation
 
 ---
 
 ## Week 2: Core AI Adversarial Concepts
-**Outcomes**: Understand membership inference attacks; learn shadow models; generate vulnerability reports.
+**Outcomes**: Implement membership inference attacks; train shadow models; generate vulnerability reports.
 
 **Exercises** (85% complete with TODOs):
 1. **Exercise 1**: Membership Inference (`week-2/exercises/exercise_1_membership_inference.py`)
-   - Implement membership inference attack
-   - Determine if a sample was in training data
-   - Understand attack success metrics
+   - Implement membership inference attack algorithm
+   - Classify samples as member or non-member of training data
+   - Calculate and interpret attack success metrics (accuracy, precision, recall)
 2. **Exercise 2**: Shadow Models (`week-2/exercises/exercise_2_shadow_models.py`)
-   - Train shadow models to mimic target behavior
-   - Generate attack training data
-   - Learn about model behavior analysis
+   - Train shadow models to replicate target model behavior
+   - Generate attack training data from shadow model outputs
+   - Analyze model behavior patterns for attack development
 3. **Exercise 3**: Vulnerability Reporting (`week-2/exercises/exercise_3_vulnerability_reporting.py`)
-   - Calculate risk scores and severity classification
-   - Generate professional AI security reports
-   - Learn to document findings for clients
+   - Calculate risk scores using attack success rates and business impact
+   - Classify vulnerabilities by severity (Low/Medium/High/Critical)
+   - Generate professional AI security vulnerability reports for clients
 
 **Required Reading**: Sotiropoulos Ch. 2–3, NIST AI Risk Management Framework
 **Deliverables**: Complete all exercises; generate vulnerability report template
@@ -84,17 +87,17 @@ All exercises include comprehensive educational comments explaining ML/AI concep
 
 **Exercises** (85% complete with TODOs):
 1. **Exercise 1**: FGSM Attack (`week-3/exercises/exercise_1_fgsm_attack.py`)
-   - Implement Fast Gradient Sign Method (FGSM)
-   - Generate adversarial samples that fool models
-   - Understand gradient-based attacks
+   - Implement Fast Gradient Sign Method (FGSM) algorithm
+   - Generate adversarial samples that successfully fool target models
+   - Apply gradient computation and sign-based perturbations
 2. **Exercise 2**: PGD Attack (`week-3/exercises/exercise_2_pgd_attack.py`)
-   - Implement Projected Gradient Descent (PGD) - iterative FGSM
-   - Understand stronger evasion attacks
-   - Learn about perturbation bounds (epsilon)
+   - Implement Projected Gradient Descent (PGD) with iterative refinement
+   - Generate stronger adversarial samples than single-step FGSM
+   - Apply perturbation bounds (epsilon) with random initialization
 3. **Exercise 3**: Attack Comparison (`week-3/exercises/exercise_3_attack_comparison.py`)
-   - Compare FGSM vs PGD effectiveness
-   - Measure evasion rates and computation time
-   - Visualize attack results
+   - Compare FGSM vs PGD attack effectiveness
+   - Measure and contrast evasion rates and computational costs
+   - Visualize and interpret attack results in reports
 4. **Exercises 4-6**: Visualization, ART attacks, Final report (placeholders)
 
 **Required Reading**: Sotiropoulos Ch. 4, Foolbox documentation, ART tutorial
