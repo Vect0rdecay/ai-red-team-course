@@ -103,53 +103,54 @@ def fgsm_attack(model, images, labels, epsilon=0.3):
     """
     Perform FGSM attack on model.
     
+    FGSM (Fast Gradient Sign Method): Simple one-step adversarial attack
     Algorithm:
-    1. Compute loss
-    2. Get gradient of loss w.r.t. input
-    3. Take sign of gradient
-    4. Add epsilon * sign to original image
-    5. Clip to valid range [0, 1]
+    1. Compute loss (how wrong the model is)
+    2. Get gradient of loss w.r.t. input (which pixels affect the prediction)
+    3. Take sign of gradient (direction of steepest ascent)
+    4. Add epsilon * sign to original image (perturb in worst direction)
+    5. Clip to valid range [0, 1] (keep image valid)
     
     Args:
         model: Target model to attack
         images: Input images to perturb
         labels: True labels for images
-        epsilon: Perturbation strength (budget)
+        epsilon: Perturbation strength (budget) - controls attack strength
     
     Returns:
-        perturbed_images: Adversarial samples
+        perturbed_images: Adversarial samples (look like originals but fool the model)
     """
-    # Set requires_grad on inputs
+    # Set requires_grad on inputs - need gradients w.r.t. inputs (not weights!)
     # TODO: Enable gradient computation on images
     # HINT: images.requires_grad_(True)
     images.requires_grad_(True)
     
-    # Forward pass
+    # Forward pass: Get model's predictions
     outputs = model(images)
     
-    # Compute loss
+    # Compute loss: How wrong is the model?
     criterion = nn.CrossEntropyLoss()
     # TODO: Calculate loss
     # HINT: loss = criterion(outputs, labels)
     loss = None  # Replace with calculation
     
-    # Backward pass to get gradients
+    # Backward pass to get gradients - calculate how each pixel affects loss
     model.zero_grad()
     # TODO: Compute gradients
     # HINT: loss.backward()
     loss.backward()
     
-    # Get sign of gradients
+    # Get sign of gradients - direction that INCREASES loss (makes model fail)
     # TODO: Extract gradient signs
     # HINT: sign_data = images.grad.sign()
     sign_data = None  # Replace with gradient sign extraction
     
-    # Create adversarial samples
+    # Create adversarial samples: Add perturbation in worst direction
     # TODO: Add perturbation to images
     # HINT: perturbed_images = images + epsilon * sign_data
     perturbed_images = None  # Replace with perturbation addition
     
-    # Clip to [0, 1] range
+    # Clip to [0, 1] range - images must be valid pixel values
     # TODO: Clip values to valid range
     # HINT: perturbed_images = torch.clamp(perturbed_images, 0, 1)
     perturbed_images = None  # Replace with clamping
