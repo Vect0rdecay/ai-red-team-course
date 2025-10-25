@@ -19,6 +19,25 @@
 
 **Portfolio Repo**: [github.com/yourname/ai-red-team-course](https://github.com/yourname/ai-red-team-course)  
 
+**Structure:**
+```
+ai-security-bootcamp/
+├─ week-01/
+├─ attacks/
+├─ harness/
+├─ reports/
+├─ lab-notebook.md
+├─ requirements.txt
+└─ ai-red-team-course.md
+```
+
+This repo includes minimal starter scripts like:
+- `train_mnist.py` — simple PyTorch MNIST training + model save
+- `serve_model.py` — FastAPI example to load and serve a model
+- `harness.py` — skeleton CLI for running attack adapters
+- `requirements.txt` — pinned list of packages to get started
+
+
 ---
 
 ## Week 1: ML Foundations for Security Pros
