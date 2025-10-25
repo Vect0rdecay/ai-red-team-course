@@ -18,18 +18,21 @@ Expected Attack Success Rate: >60% (random guess = 50%)
 # ============================================================================
 # STEP 1: SETUP AND IMPORTS
 # ============================================================================
+# Standard PyTorch imports for neural networks and optimization
 import torch
 import torch.nn as nn
 import torch.optim as optim
+# DataLoader tools for splitting datasets
 from torch.utils.data import DataLoader, Subset, random_split
 from torchvision import datasets, transforms
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
+# scikit-learn: Provides accuracy_score and confusion_matrix for evaluation
 from sklearn.metrics import accuracy_score, confusion_matrix
 import seaborn as sns
 
-# Set random seed for reproducibility
+# Set random seed for reproducibility - ensures consistent results
 torch.manual_seed(42)
 np.random.seed(42)
 
@@ -90,13 +93,15 @@ transform = transforms.Compose([
 train_dataset = datasets.MNIST(root='./data', train=True, download=True, transform=transform)
 test_dataset = datasets.MNIST(root='./data', train=False, download=True, transform=transform)
 
+# Membership Inference Attack: Determine if data was in training set
 # Split training data into member and non-member samples
-# In real attack, attacker doesn't know membership
-# Here we simulate it for testing
+# Member: Data that WAS in training set (attacker wants to detect this)
+# Non-member: Data that was NOT in training set (test set)
+# In real attack, attacker doesn't know membership - we know for testing
 train_size = len(train_dataset)
 member_size = train_size // 2
 
-# Split train into member and non-member
+# random_split: Split dataset randomly into two parts
 member_data, non_member_data = random_split(
     train_dataset, 
     [member_size, train_size - member_size],
