@@ -21,14 +21,14 @@
 
 **Structure:**
 ```
-ai-security-bootcamp/
+ai-red-team-course/
 ├─ week-01/
 ├─ attacks/
 ├─ harness/
 ├─ reports/
 ├─ lab-notebook.md
 ├─ requirements.txt
-└─ ai-red-team-course.md
+└─ README.md
 ```
 
 This repo includes minimal starter scripts like:
