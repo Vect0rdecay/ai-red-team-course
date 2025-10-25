@@ -14,6 +14,7 @@ You'll build a simple RNN that generates text character-by-character.
 This teaches you how generative models work, which is essential for attacking LLMs.
 """
 
+# Standard imports for neural networks and data handling
 import torch
 import torch.nn as nn
 import numpy as np
@@ -24,6 +25,8 @@ import matplotlib.pyplot as plt
 # ============================================================================
 print("Preparing training data...")
 
+# Character-level text generation: Model learns to predict next character
+# We'll train on Shakespeare text and the model will generate similar text
 # Simple text corpus (Shakespeare-inspired)
 text = """
 To be or not to be that is the question
@@ -33,19 +36,21 @@ Or to take arms against a sea of troubles
 And by opposing end them
 """
 
-# Clean and prepare text
+# Clean and prepare text: Lowercase everything for consistency
 text = text.lower().replace('\n', ' ')
 text = ' '.join(text.split())  # Remove extra whitespace
 
 print(f"Training text length: {len(text)} characters")
 print(f"First 100 characters: {text[:100]}")
 
-# Create character mappings
-chars = sorted(set(text))
-char_to_idx = {ch: i for i, ch in enumerate(chars)}
-idx_to_char = {i: ch for i, ch in enumerate(chars)}
+# Create character mappings: Convert characters to numbers
+# Neural networks work with numbers, not letters directly
+# Each unique character gets a number (0, 1, 2, etc.)
+chars = sorted(set(text))  # Get all unique characters and sort them
+char_to_idx = {ch: i for i, ch in enumerate(chars)}  # 'a' -> 0, 'b' -> 1, etc.
+idx_to_char = {i: ch for i, ch in enumerate(chars)}  # Reverse mapping
 
-vocab_size = len(chars)
+vocab_size = len(chars)  # How many different characters we have
 print(f"\nVocabulary size: {vocab_size} unique characters")
 print(f"Characters: {chars}")
 
@@ -57,14 +62,19 @@ print("\nCreating training sequences...")
 def create_sequences(text, seq_length=50):
     """
     Create sequences of characters for training.
-    Input: "hello world"
-    Output: 
-      X: ["hello world", "ello world ", ...]
-      y: [next_char for each sequence]
+    
+    Sliding window approach: For text "hello world"
+    - Look at "hello wo" -> predict 'r' (next character)
+    - Look at "ello wor" -> predict 'l' (next character)
+    - And so on...
+    
+    This is how we teach the model to predict the next character
     """
-    X, y = [], []
+    X, y = [], []  # X = input sequences, y = target (next character)
     
     # TODO: Create training sequences
+    # Process text in sliding windows to create training examples
+    # For each position, extract a sequence and its following character
     # HINT: Loop through text, extract sequences of length seq_length
     # For each sequence, the target is the next character
     # Convert characters to indices using char_to_idx dictionary
@@ -97,49 +107,67 @@ class CharRNN(nn.Module):
     """
     Simple character-level RNN for text generation.
     
+    RNNs are perfect for sequences because they remember previous context
     Architecture:
-    - Embedding layer: convert char indices to vectors
-    - LSTM layer: process sequences
-    - Linear layer: predict next character
+    - Embedding layer: convert char indices to dense vectors (learns character representations)
+    - LSTM layer: process sequences (remembers what happened before)
+    - Linear layer: predict next character (output probabilities for each character)
+    
+    LSTM (Long Short-Term Memory): Special RNN that can remember for many steps
     """
     def __init__(self, vocab_size, embedding_dim=128, hidden_dim=256, num_layers=2):
         super(CharRNN, self).__init__()
         
-        self.vocab_size = vocab_size
-        self.hidden_dim = hidden_dim
-        self.num_layers = num_layers
+        self.vocab_size = vocab_size  # Number of unique characters
+        self.hidden_dim = hidden_dim  # Size of LSTM's memory
+        self.num_layers = num_layers  # Stack multiple LSTM layers
         
-        # Embedding: convert char indices to dense vectors
+        # Embedding: Convert character indices to learnable dense vectors
+        # Instead of one-hot encoding, learns meaningful character representations
+        # Input: character index (e.g., 5), Output: 128-dimensional vector
         self.embedding = nn.Embedding(vocab_size, embedding_dim)
         
-        # LSTM: process sequences
+        # LSTM: Process sequences with memory
+        # Takes embedding vectors, outputs hidden states (what it "remembers")
+        # batch_first=True: Input format is (batch, seq, features) instead of (seq, batch, features)
+        # dropout: Randomly drops 20% of connections to prevent overfitting
         self.lstm = nn.LSTM(embedding_dim, hidden_dim, num_layers, 
                            batch_first=True, dropout=0.2 if num_layers > 1 else 0)
         
-        # Output layer: predict next character
+        # Output layer: Convert LSTM's memory to character probabilities
+        # Input: hidden_dim (what LSTM remembers)
+        # Output: vocab_size (probability for each possible character)
         self.fc = nn.Linear(hidden_dim, vocab_size)
         
     def forward(self, x, hidden=None):
-        # x: (batch, seq_length)
-        # TODO: Apply embedding layer
+        # x: (batch, seq_length) - batch of character sequences
+        # TODO: Apply embedding layer: Turn character indices into dense vectors
+        # Each character becomes a learnable 128-dim vector
         # HINT: self.embedding(x) converts character indices to dense vectors
         x = None
         
-        # TODO: Apply LSTM layer
+        # TODO: Apply LSTM layer: Process sequence and build memory
+        # LSTM processes each character in sequence, building context
+        # Returns: output at each step, and hidden state (memory)
         # HINT: self.lstm(x, hidden) processes the sequence
         lstm_out, hidden = None, None
         
         # TODO: Get final output and apply fully connected layer
+        # Take the last timestep's output (final memory state)
+        # Convert to probabilities for each character
         # HINT: Use lstm_out[:, -1, :] to get last timestep, then apply self.fc
         out = None
         
         return out, hidden
     
     def init_hidden(self, batch_size):
-        """Initialize hidden state."""
+        """Initialize hidden state (LSTM's initial memory)."""
+        # LSTM has two states: h (hidden) and c (cell)
+        # Both start as zeros (no prior knowledge)
         weight = next(self.parameters())
-        h0 = weight.new_zeros(self.num_layers, batch_size, self.hidden_dim)
-        c0 = weight.new_zeros(self.num_layers, batch_size, self.hidden_dim)
+        # Create zero tensors with correct shape
+        h0 = weight.new_zeros(self.num_layers, batch_size, self.hidden_dim)  # Hidden state
+        c0 = weight.new_zeros(self.num_layers, batch_size, self.hidden_dim)  # Cell state
         return (h0, c0)
 
 # Initialize model
@@ -234,46 +262,56 @@ print("\nGenerating text...")
 
 def generate_text(model, start_string, length=100, temperature=1.0):
     """
-    Generate text starting from a given string.
+    Generate text starting from a given string (autoregressive generation).
+    
+    Process: Feed model a character, get probabilities for next character, sample one
+    Repeat for desired length. Model generates one character at a time.
     
     Args:
-        model: Trained RNN model
-        start_string: Initial text to start generation
-        length: Number of characters to generate
-        temperature: Controls randomness (higher = more random)
+        model: Trained RNN model (knows how to predict next character)
+        start_string: Initial text to start generation (seed text)
+        length: Number of NEW characters to generate
+        temperature: Controls randomness
+            - Low (0.5): Conservative, picks most likely characters
+            - High (2.0): Creative, more diverse but potentially nonsensical
+            - 1.0: Balanced
     """
-    model.eval()
+    model.eval()  # Put model in inference mode (no training/learning)
     
-    # Convert start string to indices
+    # Convert start string characters to numbers
     input_seq = torch.tensor([[char_to_idx[ch] for ch in start_string]])
     
-    generated = list(start_string)
-    hidden = model.init_hidden(1)
+    generated = list(start_string)  # Start with user's seed text
+    hidden = model.init_hidden(1)  # Initialize LSTM memory (no prior context)
     
-    with torch.no_grad():
-        # Process start string
+    with torch.no_grad():  # No gradient needed for inference (faster)
+        # First, process the start string to build up context
+        # This "warms up" the LSTM's memory with the seed text
         for i in range(len(start_string) - 1):
             output, hidden = model(input_seq[:, i:i+1], hidden)
         
-        # Generate new characters
+        # Now generate NEW characters one at a time
         for _ in range(length):
             # TODO: Get next character prediction
+            # Ask model: given current context, what's the next character?
             # 1. Get model output for last character: model(input_seq[:, -1:], hidden)
             
             # TODO: Apply temperature and sample
-            # 1. Divide output by temperature
-            # 2. Apply softmax to get probabilities
-            # 3. Sample from probability distribution using torch.multinomial()
+            # Temperature controls randomness in generation
+            # 1. Divide output by temperature (higher temp = more uniform probabilities)
+            # 2. Apply softmax to convert to probabilities (sums to 1)
+            # 3. Sample from probability distribution (pick a character randomly based on probabilities)
             
             # TODO: Convert to character and add to sequence
+            # Add the new character and use it as input for next iteration
             # 1. Convert index to character: idx_to_char[next_char_idx]
-            # 2. Add to generated list
-            # 3. Append to input_seq for next iteration
+            # 2. Add to generated list (for output)
+            # 3. Append to input_seq for next iteration (feed back into model)
             
             generated.append(None)  # Add generated character
             input_seq = None  # Update input sequence
     
-    return ''.join(generated)
+    return ''.join(generated)  # Convert list of chars to string
 
 # Generate 10 samples
 start_string = "to be or not"

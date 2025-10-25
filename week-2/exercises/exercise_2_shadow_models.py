@@ -69,6 +69,7 @@ class MNIST_CNN(nn.Module):
 # ============================================================================
 print("\nPreparing data...")
 
+# Standard MNIST transformations (same as Week 1)
 transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.1307,), (0.3081,))
@@ -77,16 +78,20 @@ transform = transforms.Compose([
 # Load dataset
 dataset = datasets.MNIST(root='./data', train=True, download=True, transform=transform)
 
+# Shadow Models: Train our own model with similar data as target
+# We don't have access to target's training data, but we can get similar data
+# Shadow model mimics target's behavior for attack development
 # For shadow models, we split available data into shadow training and shadow testing
 dataset_size = len(dataset)
-train_size = int(0.8 * dataset_size)
-test_size = dataset_size - train_size
+train_size = int(0.8 * dataset_size)  # 80% for training
+test_size = dataset_size - train_size  # 20% for testing
 
-# Split into train/test for shadow models
+# random_split: Split dataset randomly into two parts
+# Shadow models need their own train/test split to learn patterns
 shadow_train_data, shadow_test_data = torch.utils.data.random_split(
     dataset, 
     [train_size, test_size],
-    generator=torch.Generator().manual_seed(42)
+    generator=torch.Generator().manual_seed(42)  # Reproducible split
 )
 
 print(f"Shadow training samples: {len(shadow_train_data)}")
@@ -116,25 +121,28 @@ optimizer = optim.Adam(shadow_model.parameters(), lr=0.001)
 # 4. Update weights
 
 def train_shadow_model(model, train_loader, epochs=10):
-    """Train a shadow model."""
-    model.train()
+    """Train a shadow model to mimic target model behavior."""
+    model.train()  # Enable training features (dropout, batch norm updates)
     
     for epoch in range(epochs):
         running_loss = 0.0
         correct = 0
         total = 0
         
+        # Standard training loop: for each batch of images
         for images, labels in train_loader:
             images, labels = images.to(device), labels.to(device)
             
+            # Forward pass: Get model predictions
             # TODO: Forward pass
-            # 1. Zero gradients: optimizer.zero_grad()
-            # 2. Get predictions: outputs = model(images)
-            # 3. Calculate loss: loss = criterion(outputs, labels)
+            # 1. Zero gradients: optimizer.zero_grad() - clear previous gradients
+            # 2. Get predictions: outputs = model(images) - forward through network
+            # 3. Calculate loss: loss = criterion(outputs, labels) - how wrong are we?
             
+            # Backward pass: Update model to reduce loss
             # TODO: Backward pass
-            # 1. Backward pass: loss.backward()
-            # 2. Update weights: optimizer.step()
+            # 1. Backward pass: loss.backward() - calculate gradients
+            # 2. Update weights: optimizer.step() - improve predictions
             
             # Track metrics
             running_loss += loss.item()
