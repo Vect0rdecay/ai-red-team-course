@@ -1,0 +1,20 @@
+# Core environment (adjust torch/tf versions to your CUDA)
+numpy
+pandas
+scikit-learn
+matplotlib
+jupyterlab
+fastapi
+uvicorn
+torch
+torchvision
+torchsummary
+foolbox
+eagerpy
+adversarial-robustness-toolbox
+torchattacks
+transformers
+accelerate
+datasets
+jinja2
+requests

@@ -1,0 +1,16 @@
+venv/
+__pycache__/
+*.pyc
+*.pt
+*.h5
+*.zip
+.env
+.DS_Store
+.ipynb_checkpoints/
+__pycache__/
+*.ipynb_checkpoints
+.vscode/
+.idea/
+data/
+models/*.pt
+models/*.h5
