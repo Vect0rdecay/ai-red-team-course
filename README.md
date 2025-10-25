@@ -19,57 +19,86 @@
 
 **Portfolio Repo**: [github.com/yourname/ai-red-team-course](https://github.com/yourname/ai-red-team-course)  
 
-**Structure:**
-```
-ai-red-team-course/
-├─ week-01/
-├─ attacks/
-├─ harness/
-├─ reports/
-├─ lab-notebook.md
-├─ requirements.txt
-└─ README.md
-```
+### Course Structure
 
-This repo includes minimal starter scripts like:
-- `train_mnist.py` — simple PyTorch MNIST training + model save
-- `serve_model.py` — FastAPI example to load and serve a model
-- `harness.py` — skeleton CLI for running attack adapters
-- `requirements.txt` — pinned list of packages to get started
+Each week contains three directories:
+- **`exercises/`** - Python scripts (.py files) with 85% complete implementations and TODOs
+- **`notebooks/`** - Jupyter notebooks (.ipynb) for interactive learning
+- **`notes/`** - Space for your personal notes and additional materials
 
+All exercises include comprehensive educational comments explaining ML/AI concepts for beginners. Both Python scripts and Jupyter notebooks are provided for each exercise.
+
+**Key Files**:
+- `PROJECT_STRUCTURE.md` - Detailed repository organization
+- `templates/vulnerability_report.md` - Professional AI security report template
+- `scripts/setup_environment.sh` - Automated environment setup
 
 ---
 
 ## Week 1: ML Foundations for Security Pros
 **Outcomes**: Identify ML attack surfaces; build & evaluate predictive/generative models.
 
-| Activity | Details | Time | Output |
-|--------|--------|------|--------|
-| **Study** | Map pentest lifecycle to ML stages (recon → data, scanning → model querying). Use Géron Ch. 1–2, Sotiropoulos Ch. 1. | 2–3 hrs | `week1/ml-attack-surfaces.drawio` or Markdown diagram |
-| **Code** | Build MNIST CNN classifier + simple text generator (PyTorch). Train, log accuracy, plot loss. | 2–3 hrs | `week1/mnist_classifier.ipynb`, `week1/text_generator.ipynb` |
-| **Exercise** | Annotate 5 OWASP ML Top 10 vulns with pentest analogies (e.g., prompt injection = XSS). | 1–2 hrs | `week1/owasp_ml_top10.md` |
+**Exercises** (85% complete with TODOs):
+1. **Exercise 1**: MNIST CNN Classifier (`week-1/exercises/exercise_1_mnist_classifier.py`)
+   - Build and train CNN for MNIST classification
+   - Understand CNN architecture, training loop, data loading
+   - Learn PyTorch fundamentals
+2. **Exercise 2**: Model Queries (`week-1/exercises/exercise_2_model_queries.py`)
+   - Interact with trained models programmatically
+   - Get predictions, softmax outputs, confidence scores
+   - Foundation for reconnaissance in AI red teaming
+3. **Exercise 3**: Text Generator (`week-1/exercises/exercise_3_text_generator.py`)
+   - Build simple RNN/LSTM for character-level text generation
+   - Understand generative models (prepares for LLM attacks)
+   - Learn embeddings, LSTM layers, autoregressive generation
+
+**Required Reading**: Géron Ch. 1–2, Sotiropoulos Ch. 1
+**Deliverables**: Complete TODOs in all three exercises; understand core ML concepts
 
 ---
 
 ## Week 2: Core AI Adversarial Concepts
-**Outcomes**: Classify attacks; align pentest workflows with AI red teaming.
+**Outcomes**: Understand membership inference attacks; learn shadow models; generate vulnerability reports.
 
-| Activity | Details | Time | Output |
-|--------|--------|------|--------|
-| **Study** | Diagram end-to-end AI pen test using your cloud pentest templates. Read Sotiropoulos Ch. 2–3, NIST Taxonomy. | 2–3 hrs | `week2/ai_pentest_lifecycle.md` |
-| **Code** | Simulate membership inference: query Week 1 model to extract training data hints. | 2 hrs | `week2/inference_attack.ipynb` |
-| **Exercise** | Summarize 3 arXiv papers on poisoning/inference. Focus on real-world risk. | 2–3 hrs | `week2/paper_summaries.md` |
+**Exercises** (85% complete with TODOs):
+1. **Exercise 1**: Membership Inference (`week-2/exercises/exercise_1_membership_inference.py`)
+   - Implement membership inference attack
+   - Determine if a sample was in training data
+   - Understand attack success metrics
+2. **Exercise 2**: Shadow Models (`week-2/exercises/exercise_2_shadow_models.py`)
+   - Train shadow models to mimic target behavior
+   - Generate attack training data
+   - Learn about model behavior analysis
+3. **Exercise 3**: Vulnerability Reporting (`week-2/exercises/exercise_3_vulnerability_reporting.py`)
+   - Calculate risk scores and severity classification
+   - Generate professional AI security reports
+   - Learn to document findings for clients
+
+**Required Reading**: Sotiropoulos Ch. 2–3, NIST AI Risk Management Framework
+**Deliverables**: Complete all exercises; generate vulnerability report template
 
 ---
 
 ## Week 3: Evasion & Inference Attacks on Predictive Models
-**Outcomes**: Execute FGSM/PGD; run membership inference; quantify model weakness.
+**Outcomes**: Execute gradient-based evasion attacks (FGSM, PGD); compare attack effectiveness; use AI security tools.
 
-| Activity | Details | Time | Output |
-|--------|--------|------|--------|
-| **Study** | Read Foolbox quickstart. Compare FGSM/PGD to API fuzzing (Burp Intruder). | 1–2 hrs | `week3/foolbox_notes.md` |
-| **Code** | Apply FGSM & PGD to Week 1 MNIST model using Foolbox. Target >90% evasion. Visualize perturbations. | 3–4 hrs | `week3/evasion_fgsm_pgd.ipynb` |
-| **Exercise** | Run ART membership inference tutorial. Log success rate. Draft 1-page vuln report. | 2 hrs | `week3/membership_inference.ipynb`, `reports/membership_report.pdf` |
+**Exercises** (85% complete with TODOs):
+1. **Exercise 1**: FGSM Attack (`week-3/exercises/exercise_1_fgsm_attack.py`)
+   - Implement Fast Gradient Sign Method (FGSM)
+   - Generate adversarial samples that fool models
+   - Understand gradient-based attacks
+2. **Exercise 2**: PGD Attack (`week-3/exercises/exercise_2_pgd_attack.py`)
+   - Implement Projected Gradient Descent (PGD) - iterative FGSM
+   - Understand stronger evasion attacks
+   - Learn about perturbation bounds (epsilon)
+3. **Exercise 3**: Attack Comparison (`week-3/exercises/exercise_3_attack_comparison.py`)
+   - Compare FGSM vs PGD effectiveness
+   - Measure evasion rates and computation time
+   - Visualize attack results
+4. **Exercises 4-6**: Visualization, ART attacks, Final report (placeholders)
+
+**Required Reading**: Sotiropoulos Ch. 4, Foolbox documentation, ART tutorial
+**Deliverables**: Complete FGSM and PGD implementations; compare attack performance
 
 ---
 
