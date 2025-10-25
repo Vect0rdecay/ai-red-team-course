@@ -1,6 +1,6 @@
 # Exercises Directory
 
-This directory contains coding exercises for Week 3.
+This directory contains coding exercises for Week 4.
 
 Exercises are provided in both:
 - `.py` format (Python scripts)
