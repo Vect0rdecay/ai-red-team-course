@@ -17,15 +17,19 @@ You'll query your trained MNIST model to:
 4. Document model behavior for exploit development
 """
 
+# torch.nn.functional: Advanced operations like softmax (probability calculation)
 import torch
 import torch.nn as nn
 from torchvision import datasets, transforms
+# matplotlib: For plotting images and graphs
 import matplotlib.pyplot as plt
+# numpy: Numerical operations and array handling
 import numpy as np
 from pathlib import Path
+# seaborn: Better-looking statistical plots
 import seaborn as sns
 
-# Set style for better plots
+# Set style for better-looking plots (optional but nice for reports)
 plt.style.use('seaborn-v0_8-darkgrid')
 sns.set_palette("husl")
 
@@ -34,7 +38,7 @@ sns.set_palette("husl")
 # ============================================================================
 print("Loading trained MNIST model...")
 
-# Define the same model architecture as in Exercise 1
+# Define the same model architecture as in Exercise 1 (must match exactly!)
 class MNIST_CNN(nn.Module):
     def __init__(self):
         super(MNIST_CNN, self).__init__()
@@ -53,21 +57,24 @@ class MNIST_CNN(nn.Module):
         x = self.fc2(x)
         return x
 
-# Load model weights
+# Load model weights that were trained in Exercise 1
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = MNIST_CNN().to(device)
 
 model_path = Path(__file__).parent.parent.parent / "models" / "mnist_cnn.pt"
 
-# Check if model exists
+# Check if model exists - need to run Exercise 1 first!
 if model_path.exists():
+    # load_state_dict: Loads the trained weights into our model architecture
     model.load_state_dict(torch.load(model_path, map_location=device))
     print(f"✓ Model loaded from {model_path}")
 else:
     print("⚠ Model not found! Please run exercise_1_mnist_classifier.py first")
     exit()
 
-model.eval()  # Set to evaluation mode
+# model.eval(): Turns off training features (dropout, batch norm updates)
+# Required when making predictions - tells PyTorch we're in inference mode
+model.eval()
 print(f"Model loaded on device: {device}")
 
 # ============================================================================
@@ -92,10 +99,13 @@ sample_indices = np.random.choice(len(test_dataset), 100, replace=False)
 # ============================================================================
 print("\nQuerying model with test samples...")
 
-predictions = []
-actual_labels = []
-confidence_scores = []
+# Lists to store results for later analysis
+predictions = []  # What the model predicted (0-9)
+actual_labels = []  # What the image actually is (ground truth)
+confidence_scores = []  # How confident the model is (0-1)
 
+# torch.no_grad(): Disable gradient computation to save memory and speed
+# We're not training, so we don't need gradients (forward pass only)
 with torch.no_grad():
     for idx in sample_indices:
         image, label = test_dataset[idx]
