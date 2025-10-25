@@ -6,6 +6,39 @@ Objective: Generate complete AI security assessment report
 Red Team Context: This is your deliverable - a complete vulnerability report
 documenting evasion attacks, findings, and remediation recommendations.
 
+The report is what you hand to the client. It must be:
+- Professional and well-structured
+- Clear about business impact
+- Technically accurate
+- Actionable with specific remediation steps
+
+Structure for pentest report:
+1. Executive Summary (for C-level execs)
+   - High-level findings
+   - Business risk
+   - Overall security posture
+
+2. Technical Details (for engineers)
+   - Attack methodology
+   - Proof of concept
+   - Code samples
+   - Attack success rates
+
+3. Risk Assessment
+   - CVSS-like scoring for AI vulnerabilities
+   - Likelihood × Impact
+   - Severity classification (Low/Medium/High/Critical)
+
+4. Remediation Recommendations
+   - Specific defensive techniques (adversarial training, detection)
+   - Implementation roadmap
+   - Priority ranking
+
+5. Compliance Impact
+   - GDPR, HIPAA, SOC2 implications
+   - Data privacy considerations
+   - Regulatory risks
+
 Report should include:
 - Executive summary with business impact
 - Technical attack details (FGSM, PGD results)

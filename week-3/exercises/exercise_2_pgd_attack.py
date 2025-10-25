@@ -74,46 +74,59 @@ print(f"Loaded {len(test_images)} test samples")
 # PGD Attack
 def pgd_attack(model, images, labels, epsilon=0.3, alpha=0.01, num_iter=40):
     """
-    Perform PGD attack - iterative FGSM with projection.
+    Perform PGD attack - iterative FGSM with projection (stronger attack).
+    
+    PGD (Projected Gradient Descent) = Multiple FGSM steps with projection
+    - Starts with random initialization (better than starting from zero)
+    - Applies FGSM multiple times (num_iter steps)
+    - After each step, "projects" perturbation back into epsilon-ball
+    - This refines the attack iteratively for maximum effectiveness
     
     Args:
-        epsilon: Maximum perturbation budget
-        alpha: Step size per iteration
-        num_iter: Number of iterations
+        epsilon: Maximum perturbation budget (how much we can change pixels)
+        alpha: Step size per iteration (how big each step is)
+        num_iter: Number of iterations (more = stronger attack, slower)
     
     Returns:
-        perturbed_images: Adversarial samples
+        perturbed_images: Adversarial samples (look like originals but fool model)
     """
     # Initialize perturbation (random start for better results)
+    # Random initialization helps avoid local minima in the attack
     # TODO: Add random initialization
     # HINT: perturbation = torch.zeros_like(images).uniform_(-epsilon, epsilon)
     perturbation = None
     
+    # Iterative optimization: Refine attack over multiple steps
     for i in range(num_iter):
-        # Set requires_grad
+        # Set requires_grad on current perturbation
         perturbed = images + perturbation
         perturbed.requires_grad_(True)
         
-        # Forward pass
+        # Forward pass: Get model predictions on current perturbation
         outputs = model(perturbed)
         criterion = nn.CrossEntropyLoss()
         
         # TODO: Calculate loss and get gradients
+        # Want to maximize loss (make model fail)
         # HINT: loss = criterion(outputs, labels)
         #       loss.backward()
         loss = None
         loss.backward()
         
         # TODO: Update perturbation with gradient ascent
+        # Move perturbation in direction that increases loss (makes model fail more)
+        # alpha controls step size (smaller = more careful, larger = faster)
         # HINT: perturbation = perturbation + alpha * perturbed.grad.sign()
         perturbation = None
         
         # TODO: Project perturbation to epsilon-ball
+        # Keep perturbation bounded - don't exceed epsilon
+        # This is the "projection" step
         # HINT: perturbation = torch.clamp(perturbation, -epsilon, epsilon)
         perturbation = None
     
     # Create final adversarial samples
-    # TODO: Clip to valid range
+    # TODO: Clip to valid range [0, 1] for images
     # HINT: adversarial = torch.clamp(images + perturbation, 0, 1)
     adversarial = None
     

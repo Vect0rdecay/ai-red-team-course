@@ -84,27 +84,33 @@ def pgd_attack(model, images, labels, epsilon=0.3, alpha=0.01, num_iter=40):
     adversarial = torch.clamp(images + perturbation, 0, 1)
     return adversarial
 
-# Evaluate attack
+# Evaluate attack: Test how well model performs on samples
 def evaluate(model, images, labels):
-    model.eval()
-    with torch.no_grad():
-        outputs = model(images)
-        _, predicted = torch.max(outputs.data, 1)
-        correct = (predicted == labels).sum().item()
-        accuracy = 100.0 * correct / len(labels)
+    """Calculate model accuracy on given images."""
+    model.eval()  # Set to evaluation mode (no training)
+    with torch.no_grad():  # Don't compute gradients (faster)
+        outputs = model(images)  # Get model predictions
+        _, predicted = torch.max(outputs.data, 1)  # Get predicted class (highest probability)
+        correct = (predicted == labels).sum().item()  # Count correct predictions
+        accuracy = 100.0 * correct / len(labels)  # Convert to percentage
     return accuracy
 
 print("\nRunning comparison experiments...")
 
-# Test FGSM
+# Compare FGSM vs PGD: Which attack is stronger?
+# Goal: Measure attack effectiveness and computational cost
+# FGSM: Fast but weaker (single step)
+# PGD: Slower but stronger (iterative refinement)
+
+# Test FGSM Attack
 print("\nTesting FGSM...")
-start_time = time.time()
+start_time = time.time()  # Measure attack time
 fgsm_perturbed = fgsm_attack(model, test_images, test_labels, epsilon=0.3)
 fgsm_time = time.time() - start_time
-fgsm_accuracy = evaluate(model, fgsm_perturbed, test_labels)
-fgsm_evasion = 100 - fgsm_accuracy
+fgsm_accuracy = evaluate(model, fgsm_perturbed, test_labels)  # How well model classifies adversarial samples
+fgsm_evasion = 100 - fgsm_accuracy  # Higher evasion = better attack (model fails more)
 
-# Test PGD
+# Test PGD Attack
 print("Testing PGD...")
 start_time = time.time()
 pgd_perturbed = pgd_attack(model, test_images, test_labels, epsilon=0.3)
@@ -112,8 +118,8 @@ pgd_time = time.time() - start_time
 pgd_accuracy = evaluate(model, pgd_perturbed, test_labels)
 pgd_evasion = 100 - pgd_accuracy
 
-# Results
-clean_accuracy = evaluate(model, test_images, test_labels)
+# Results: Compare performance
+clean_accuracy = evaluate(model, test_images, test_labels)  # Baseline performance
 
 print("\n" + "="*70)
 print("COMPARISON RESULTS")
