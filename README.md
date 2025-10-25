@@ -1,9 +1,5 @@
-# ai-red-team-course
-8 Week course to transition from Web/API/Cloud Hacker to AI Red Team
-
-
 # 8-Week AI Red Teaming Transition Course  
-**From Web/Cloud Pentesting to AI Security — Job-Ready in 2 Months**
+**From Web/Cloud Pentesting to AI Security — in 2 Months**
 
 > **Goal**: Build upon existing **n+ years of web, API, and cloud pentesting** to become a qualified **AI Red Teamer** (e.g., HiddenLayer).  
 > **Outcome**: Portfolio with attack notebooks, reports, tool contributions, and resume-ready evidence of **1+ year equivalent AI security experience**.
