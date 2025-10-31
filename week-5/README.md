@@ -58,37 +58,40 @@ By the end of Week 5, you will be able to:
 
 ### Monday-Tuesday: Jailbreak Techniques (3-4 hours)
 
-**Activity**: Learn and practice jailbreak prompt engineering
+**Activity**: Study jailbreak techniques through research papers and expert blogs
 
 **Background**:
 - Jailbreaks bypass LLM safety filters
-- Techniques: DAN, role-play, indirect prompting, etc.
-- Goal: Understand attack patterns
+- Techniques: DAN, role-play, indirect prompting, carrier articles, etc.
+- Goal: Understand attack patterns and methodologies
 
-**Exercises**:
-1. Load Llama-2 or similar model
-2. Craft 10 jailbreak prompts using different techniques
-3. Test effectiveness and document results
+**Reading Exercises**:
+1. Read ArXiv papers on jailbreak techniques
+2. Review Embrace the Red blog posts on LLM security
+3. Analyze real-world jailbreak examples and case studies
+4. Document key techniques and attack vectors
 
 **Expected Results**: 
-- 50-80% success rate depending on model and techniques
-- Understanding of what works and why
+- Understanding of jailbreak methodologies
+- Knowledge of attack patterns and success factors
+- Awareness of defense strategies
 
 ---
 
 ### Wednesday: Prompt Injection & Attack Chaining (3-4 hours)
 
-**Activity**: Advanced prompt injection techniques
+**Activity**: Study prompt injection techniques through research
 
 **Background**:
 - Prompt injection: Manipulate model through input
 - Attack chaining: Combine multiple techniques
 - Real-world: System prompt extraction, filter bypass
 
-**Exercises**:
-1. Chain prompt injections (extract → bypass → execute)
-2. Test system prompt extraction
-3. Create multi-step attack scenarios
+**Reading Exercises**:
+1. Study prompt injection research papers
+2. Analyze attack chaining methodologies
+3. Review system prompt extraction techniques
+4. Document multi-stage exploitation approaches
 
 ---
 
@@ -119,47 +122,33 @@ By the end of Week 5, you will be able to:
 
 ---
 
-## Coding Exercises
+## Reading Exercises
 
-### Exercise 1: Jailbreak Prompt Crafting
-**File**: `exercise_1_jailbreak_prompts.py`
-**Objective**: Craft and test jailbreak prompts
+Week 5 uses curated reading materials from research papers and expert blogs instead of coding exercises to demonstrate prompt injection and jailbreak concepts. These resources provide real-world examples and comprehensive analysis of LLM vulnerabilities.
 
-**What You'll Learn**:
-- Jailbreak techniques (DAN, role-play, etc.)
-- Prompt engineering skills
-- LLM behavior understanding
-- Safety filter analysis
+**See**: `exercises/README.md` for complete list of reading resources
 
-**Time**: ~3 hours
+### Key Reading Resources
 
----
+**ArXiv Research Papers**:
+- Red Teaming the Mind of the Machine: Systematic Evaluation of Prompt Injection and Jailbreak Vulnerabilities (https://arxiv.org/abs/2505.04806)
+- Hide Your Malicious Goal Into Benign Narratives: Jailbreak LLMs through Carrier Articles (https://arxiv.org/abs/2408.11182)
+- SequentialBreak: LLMs Can be Fooled by Embedding Jailbreak Prompts into Sequential Prompt Chains (https://arxiv.org/abs/2411.06426)
+- "Do Anything Now": Characterizing and Evaluating In-The-Wild Jailbreak Prompts (https://arxiv.org/abs/2308.03825)
+- Anyone Can Jailbreak: Prompt-Based Attacks on LLMs and T2Is (https://arxiv.org/abs/2507.21820)
 
-### Exercise 2: Prompt Injection Attack Chain
-**File**: `exercise_2_prompt_injection_chain.py`
-**Objective**: Chain multiple prompt injections
+**Blog Resources**:
+- Embrace the Red Blog: https://embracethered.com/blog/ (search for "prompt injection" and "LLM security")
+- InjectPrompt Blog: https://www.injectprompt.com/
+- Lakera Blog - Direct Prompt Injections: https://www.lakera.ai/blog/direct-prompt-injections
 
-**What You'll Learn**:
-- Attack chaining methodology
-- System prompt extraction
-- Advanced injection techniques
-- Multi-stage exploitation
+**CTF Challenges and Hands-On Practice**:
+- Lakera Gandalf: https://gandalf.lakera.ai/ (gamified prompt hacking challenges)
+- Security Café's AI Hacking Games: https://securitycafe.ro/2023/05/15/ai-hacking-games-jailbreak-ctfs/
+- Hack The Box Academy - Prompt Injection Attacks Course: https://academy.hackthebox.com/course/preview/prompt-injection-attacks
+- See `exercises/README.md` for complete list of CTF resources
 
-**Time**: ~2 hours
-
----
-
-### Exercise 3: Garak Vulnerability Scanning
-**File**: `exercise_3_garak_scan.py` or results documentation
-**Objective**: Use garak for comprehensive LLM testing
-
-**What You'll Learn**:
-- Professional LLM security tooling
-- Automated vulnerability scanning
-- Results interpretation
-- Report generation
-
-**Time**: ~2 hours
+**Time**: ~6-8 hours reading and analysis, plus optional CTF practice
 
 ---
 
@@ -167,27 +156,31 @@ By the end of Week 5, you will be able to:
 
 These challenges enhance learning through jailbreak cataloging, attack chaining, tool development, and executive communication.
 
-### Challenge 1: Jailbreak Prompt Engineering Tournament (2 hours)
+### Challenge 1: Jailbreak Research Catalog (2 hours)
 
-**Objective**: Create catalog of successful jailbreak prompts organized by technique.
+**Objective**: Create catalog of jailbreak techniques based on research papers and blog analysis.
 
-**Task**: Craft jailbreaks using 3-5 different techniques (DAN, role-play, indirect, etc.). Test on multiple models, document success rates, organize into catalog.
+**Task**: Analyze research papers and blog posts to identify 5-10 different jailbreak techniques. Document each technique, its methodology, success factors, and examples from research. Organize into catalog.
 
 **Deliverable**: `week-5/jailbreak_catalog.md`
 
 **Details**: See `week-5/challenges/challenge_1_jailbreak_tournament.md`
 
+**Note**: This challenge focuses on researching and cataloging techniques rather than implementing them.
+
 ---
 
-### Challenge 2: Prompt Injection Attack Chain (2 hours)
+### Challenge 2: Prompt Injection Attack Analysis (2 hours)
 
-**Objective**: Chain multiple prompt injections to achieve complex goal.
+**Objective**: Analyze prompt injection attack chains from research literature.
 
-**Task**: Create multi-step attack: extract system prompt → bypass safety filter → achieve target objective. Document attack flow and dependencies.
+**Task**: Study multi-step prompt injection attacks from research papers. Document attack flow, dependencies, and methodologies. Analyze how researchers chain techniques to achieve complex goals.
 
-**Deliverable**: `week-5/attack_chain.md` + demonstration
+**Deliverable**: `week-5/attack_chain.md` + analysis
 
 **Details**: See `week-5/challenges/challenge_2_prompt_injection_chain.md`
+
+**Note**: This challenge focuses on analyzing research rather than implementing attacks.
 
 ---
 
@@ -218,10 +211,11 @@ These challenges enhance learning through jailbreak cataloging, attack chaining,
 ## Deliverables Checklist
 
 ### Core Exercises
-- [ ] Jailbreak prompts successfully bypassing safety filters
-- [ ] Prompt injection attack chain achieving multi-step goal
-- [ ] Garak scan results with vulnerability findings
-- [ ] Purple Llama benchmark results
+- [ ] Read and analyze at least 3 ArXiv papers on jailbreaks/prompt injection
+- [ ] Review Embrace the Red blog posts on LLM security
+- [ ] Document key jailbreak and prompt injection techniques learned
+- [ ] Garak scan results with vulnerability findings (if applicable)
+- [ ] Purple Llama benchmark results (if applicable)
 
 ### Creative Challenges (New)
 - [ ] `jailbreak_catalog.md` - Organized jailbreak techniques
@@ -239,12 +233,13 @@ These challenges enhance learning through jailbreak cataloging, attack chaining,
 
 **You've successfully completed Week 5 when you can**:
 
-1. Craft jailbreak prompts with >50% success rate
-2. Chain prompt injections to achieve complex goals
-3. Use garak for comprehensive LLM testing
-4. Develop custom security probes
+1. Understand jailbreak techniques and methodologies from research
+2. Analyze prompt injection attack chains and methodologies
+3. Use garak for comprehensive LLM testing (if applicable)
+4. Develop custom security probes (if applicable)
 5. Explain LLM vulnerabilities to non-technical audiences
 6. Map attacks to OWASP LLM Top 10
+7. Reference real-world examples from research papers and blogs
 
 ---
 
@@ -277,18 +272,18 @@ These challenges enhance learning through jailbreak cataloging, attack chaining,
 
 ## Troubleshooting Tips
 
-**Jailbreaks Not Working**:
-- Try different techniques
-- Refine prompt wording
-- Test on different models
-- Check if model has been updated/patched
+**Reading Resources**:
+- ArXiv papers are freely available and downloadable as PDFs
+- Blog posts may require web access
+- Some papers may have companion websites or GitHub repositories
+- Use paper search tools to find related work
 
-**Garak Installation Issues**:
+**Garak Installation Issues** (if using):
 - Check Python version (3.8+)
 - Verify all dependencies
 - Check model access (API keys if needed)
 
-**Model Access**:
+**Model Access** (if testing):
 - Use local models if API access limited
 - Hugging Face provides free tier
 - Consider model size (smaller = faster testing)
@@ -298,9 +293,9 @@ These challenges enhance learning through jailbreak cataloging, attack chaining,
 ## Next Steps
 
 After completing Week 5:
-1. Review jailbreak and injection results
-2. Document findings in vulnerability format
-3. Update portfolio with LLM security work
+1. Review jailbreak and injection research papers and blog analyses
+2. Document findings and key techniques learned
+3. Update portfolio with LLM security knowledge
 4. Prepare for Week 6: Advanced LLM red teaming
 
 **Week 6 Preview**: You'll run Purple Llama evaluations, perform multi-vector attacks, and simulate purple team exercises.

@@ -33,14 +33,21 @@ ai-red-team-course/
 ├── week-2/                        # Week 2: Adversarial AI Intro
 │   ├── README.md
 │   ├── WEEK2_SUMMARY.md
+│   ├── requirements.txt           # Week-specific dependencies
 │   ├── exercises/                 # Python scripts
 │   │   ├── exercise_1_membership_inference.py
 │   │   ├── exercise_2_shadow_models.py
 │   │   └── exercise_3_vulnerability_reporting.py
+│   ├── challenges/                # Additional challenges
+│   │   ├── challenge_1_detective_mode.md
+│   │   ├── challenge_2_attack_decision_tree.md
+│   │   ├── challenge_3_shadow_model_buildoff.md
+│   │   └── challenge_4_paper_challenge.md
 │   └── notes/                     # Student notes directory
 │
 ├── week-3/                        # Week 3: Evasion & Inference Attacks
 │   ├── README.md
+│   ├── requirements.txt           # Week-specific dependencies
 │   ├── exercises/                 # Python scripts
 │   │   ├── exercise_1_art_evasion_attacks.py     # Simplified: ART library
 │   │   ├── exercise_2_cleverhans_evasion_attacks.py # Simplified: CleverHans library
@@ -49,32 +56,65 @@ ai-red-team-course/
 │   │   ├── exercise_5_pgd_attack.py             # Advanced: From scratch
 │   │   ├── exercise_6_attack_comparison.py      # Visualization
 │   │   └── exercise_7_vulnerability_report.py    # Reporting
+│   ├── challenges/                # Additional challenges
+│   │   ├── challenge_1_attack_demo_video.md
+│   │   ├── challenge_2_tool_comparison.md
+│   │   ├── challenge_3_fraud_evasion.md
+│   │   └── challenge_4_visualization_gallery.md
 │   └── notes/                     # Student notes directory
 │
 ├── week-4/                        # Week 4: Poisoning & Backdoor
 │   ├── README.md
+│   ├── requirements.txt           # Week-specific dependencies
 │   ├── exercises/                 # Python scripts
+│   │   ├── exercise_1_data_poisoning.py
+│   │   ├── exercise_2_backdoor_attack.py
+│   │   └── exercise_3_defense_testing.py
+│   ├── challenges/                # Additional challenges
+│   │   ├── challenge_1_supply_chain.md
+│   │   ├── challenge_2_backdoor_triggers.md
+│   │   ├── challenge_3_defense_effectiveness.md
+│   │   └── challenge_4_poisoning_detection.md
 │   └── notes/                     # Student notes directory
 │
 ├── week-5/                        # Week 5: Generative AI Security
 │   ├── README.md
 │   ├── exercises/                 # Python scripts
+│   ├── challenges/                # Additional challenges
+│   │   ├── challenge_1_jailbreak_tournament.md
+│   │   ├── challenge_2_prompt_injection_chain.md
+│   │   ├── challenge_3_custom_garak_probe.md
+│   │   └── challenge_4_executive_communication.md
 │   └── notes/                     # Student notes directory
 │
 ├── week-6/                        # Week 6: Advanced LLM Red Teaming
 │   ├── README.md
 │   ├── exercises/                 # Python scripts
+│   ├── challenges/                # Additional challenges
+│   │   ├── challenge_1_purple_team.md
+│   │   ├── challenge_2_multi_vector.md
+│   │   ├── challenge_3_model_comparison.md
+│   │   └── challenge_4_research_deepdive.md
 │   └── notes/                     # Student notes directory
 │
 ├── week-7/                        # Week 7: Mitigations, Evaluation & Reporting
 │   ├── README.md
 │   ├── exercises/                 # Python scripts
+│   ├── challenges/                # Additional challenges
+│   │   ├── challenge_1_defense_implementation.md
+│   │   ├── challenge_2_atlas_mapping.md
+│   │   ├── challenge_3_security_evaluation.md
+│   │   └── challenge_4_pentest_report.md
 │   └── notes/                     # Student notes directory
 │
 ├── week-8/                        # Week 8: Capstone Project
 │   ├── README.md
 │   ├── exercises/                 # Python scripts
 │   ├── challenges/                # Capstone challenges
+│   │   ├── challenge_1_end_to_end_assessment.md
+│   │   ├── challenge_2_tool_contribution.md
+│   │   ├── challenge_3_portfolio_building.md
+│   │   └── challenge_4_career_preparation.md
 │   └── notes/                     # Student notes directory
 │
 ├── templates/                     # Reusable templates
@@ -119,9 +159,10 @@ Each week directory contains:
   - For personal notes and additional learning materials
 
 **Additional directories** (some weeks):
-- `challenges/`: Additional challenge exercises (Week 1, Week 8)
+- `challenges/`: Additional challenge exercises (Week 1, Week 2, Week 3, Week 4, Week 5, Week 6, Week 7, Week 8)
 - `models/`: Week-specific trained models (Week 1)
-- `requirements.txt`: Week-specific dependencies (Week 1)
+- `requirements.txt`: Week-specific dependencies (Week 1, Week 2, Week 3, Week 4)
+- `WEEK*_SUMMARY.md`: One-page summary documents (Week 1, Week 2)
 
 ### templates/
 Reusable templates for common course artifacts:
