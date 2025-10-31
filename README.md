@@ -35,7 +35,7 @@ All exercises include comprehensive educational comments explaining ML/AI concep
 
 ---
 
-## Week 1: ML Foundations for Security Pros
+## Week 1: ML Foundations
 **Outcomes**: Build and query ML models; understand baseline model behavior before attacking.
 
 **Simplified Exercises** (Minimal working code):

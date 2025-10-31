@@ -1,0 +1,8 @@
+torch
+torchvision
+numpy
+matplotlib
+adversarial-robustness-toolbox
+cleverhans
+foolbox
+eagerpy

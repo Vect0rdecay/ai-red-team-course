@@ -4,5 +4,3 @@ numpy
 matplotlib
 scikit-learn
 seaborn
-fastapi
-uvicorn

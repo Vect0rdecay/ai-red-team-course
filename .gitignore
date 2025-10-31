@@ -17,7 +17,9 @@ models/*.h5
 
 # Planning and internal development documents
 ALL_WEEKS_AUDIT.md
+all_weeks_audit.md
 COURSE_IMPROVEMENT_CHECKLIST.md
+course_improvement_checklist.md
 RECONFIGURATION_COMPLETE.md
 WEEK_*_RECONFIGURATION_PROPOSAL.md
 FILE_NAMING_VERIFICATION.md
