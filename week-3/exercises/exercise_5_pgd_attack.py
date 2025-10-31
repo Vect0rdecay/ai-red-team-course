@@ -1,5 +1,5 @@
 """
-Week 3 - Exercise 2: PGD (Projected Gradient Descent) Attack
+Week 3 - Exercise 5: PGD (Projected Gradient Descent) Attack (From Scratch)
 
 Objective: Implement PGD from scratch for stronger evasion attacks
 

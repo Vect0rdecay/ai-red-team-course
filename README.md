@@ -36,72 +36,84 @@ All exercises include comprehensive educational comments explaining ML/AI concep
 ---
 
 ## Week 1: ML Foundations for Security Pros
-**Outcomes**: Identify ML attack surfaces; build & evaluate predictive/generative models.
+**Outcomes**: Build and query ML models; understand baseline model behavior before attacking.
 
-**Exercises** (85% complete with TODOs):
-1. **Exercise 1**: MNIST CNN Classifier (`week-1/exercises/exercise_1_mnist_classifier.py`)
-   - Build and train CNN for MNIST classification
-   - Implement CNN architecture layers (Conv2d, MaxPool2d, Linear, ReLU)
-   - Configure training loop with loss functions and optimizers
-   - Apply PyTorch fundamentals to model development
-2. **Exercise 2**: Model Queries (`week-1/exercises/exercise_2_model_queries.py`)
-   - Query trained models programmatically to extract predictions
-   - Apply softmax to convert logits to probabilities
-   - Extract confidence scores and predicted classes
-   - Practice reconnaissance techniques for AI red teaming
-3. **Exercise 3**: Text Generator (`week-1/exercises/exercise_3_text_generator.py`)
-   - Build simple RNN/LSTM for character-level text generation
-   - Implement embedding layers, LSTM processing, and output layers
-   - Apply autoregressive generation with temperature sampling
-   - Prepare foundations for LLM attack methods
+**Simplified Exercises** (Minimal working code):
+1. **Exercise 1**: Train MNIST Model (`week-1/exercises/exercise_1_simple_mnist_train.py`)
+   - Train simple CNN on MNIST dataset
+   - Minimal training code (3 epochs)
+   - Save model for later exercises
+   - **Time**: ~10 minutes
+2. **Exercise 2**: Query Model and Analyze Predictions (`week-1/exercises/exercise_2_simple_model_queries.py`)
+   - Load trained model and make predictions
+   - Extract confidence scores
+   - Analyze correct vs incorrect predictions
+   - Understand baseline model behavior
+   - **Time**: ~5 minutes
+3. **Exercise 3**: Model Sensitivity Analysis (`week-1/exercises/exercise_3_model_sensitivity.py`)
+   - Test model with modified inputs (noise, brightness)
+   - Observe how confidence scores change
+   - Understand model sensitivity (foundation for adversarial attacks)
+   - **Time**: ~5 minutes
+4. **Exercise 4**: Simple Model Deployment (`week-1/exercises/exercise_4_simple_deployment.py`) - Optional
+   - Deploy model as FastAPI endpoint
+   - Basic model serving demonstration
+   - **Time**: ~10 minutes
 
-**Required Reading**: Géron Ch. 1–2, Sotiropoulos Ch. 1
-**Deliverables**: Complete TODOs in all three exercises; demonstrate knowledge of core ML concepts through implementation
+**Required Reading**: Géron Ch. 1, 10, 13; Sotiropoulos Ch. 1
+**Deliverables**: Trained model (>95% accuracy), baseline behavior analysis, sensitivity testing
 
 ---
 
 ## Week 2: Core AI Adversarial Concepts
-**Outcomes**: Implement membership inference attacks; train shadow models; generate vulnerability reports.
+**Outcomes**: Perform membership inference attacks; understand attack taxonomy; generate vulnerability reports.
 
-**Exercises** (85% complete with TODOs):
-1. **Exercise 1**: Membership Inference (`week-2/exercises/exercise_1_membership_inference.py`)
+**Exercises**:
+1. **Exercise 1**: Membership Inference Attack (`week-2/exercises/exercise_1_membership_inference.py`)
    - Implement membership inference attack algorithm
    - Classify samples as member or non-member of training data
-   - Calculate and interpret attack success metrics (accuracy, precision, recall)
+   - Calculate attack success metrics (>60% accuracy)
 2. **Exercise 2**: Shadow Models (`week-2/exercises/exercise_2_shadow_models.py`)
    - Train shadow models to replicate target model behavior
    - Generate attack training data from shadow model outputs
-   - Analyze model behavior patterns for attack development
+   - Improve membership inference attack accuracy
 3. **Exercise 3**: Vulnerability Reporting (`week-2/exercises/exercise_3_vulnerability_reporting.py`)
-   - Calculate risk scores using attack success rates and business impact
-   - Classify vulnerabilities by severity (Low/Medium/High/Critical)
-   - Generate professional AI security vulnerability reports for clients
+   - Calculate risk scores using attack success rates
+   - Generate professional AI security vulnerability reports
 
-**Required Reading**: Sotiropoulos Ch. 2–3, NIST AI Risk Management Framework
-**Deliverables**: Complete all exercises; generate vulnerability report template
+**Required Reading**: Sotiropoulos Ch. 2–4, NIST AI Risk Management Framework
+**Deliverables**: Membership inference attack (>60% success), shadow models, vulnerability report
 
 ---
 
 ## Week 3: Evasion & Inference Attacks on Predictive Models
-**Outcomes**: Execute gradient-based evasion attacks (FGSM, PGD); compare attack effectiveness; use AI security tools.
+**Outcomes**: Execute evasion attacks using libraries (ART, CleverHans, Foolbox); optionally implement from scratch.
 
-**Exercises** (85% complete with TODOs):
-1. **Exercise 1**: FGSM Attack (`week-3/exercises/exercise_1_fgsm_attack.py`)
-   - Implement Fast Gradient Sign Method (FGSM) algorithm
-   - Generate adversarial samples that successfully fool target models
-   - Apply gradient computation and sign-based perturbations
-2. **Exercise 2**: PGD Attack (`week-3/exercises/exercise_2_pgd_attack.py`)
-   - Implement Projected Gradient Descent (PGD) with iterative refinement
-   - Generate stronger adversarial samples than single-step FGSM
-   - Apply perturbation bounds (epsilon) with random initialization
-3. **Exercise 3**: Attack Comparison (`week-3/exercises/exercise_3_attack_comparison.py`)
-   - Compare FGSM vs PGD attack effectiveness
-   - Measure and contrast evasion rates and computational costs
-   - Visualize and interpret attack results in reports
-4. **Exercises 4-6**: Visualization, ART attacks, Final report (placeholders)
+**Simplified Exercises** (Library-first approach):
+1. **Exercise 1**: ART Evasion Attacks (`week-3/exercises/exercise_1_art_evasion_attacks.py`)
+   - Use ART library for FGM and PGD attacks
+   - Achieve 80-90% evasion with FGM, >95% with PGD
+   - **Time**: ~5 minutes
+2. **Exercise 2**: CleverHans Evasion Attacks (`week-3/exercises/exercise_2_cleverhans_evasion_attacks.py`)
+   - Use CleverHans for FGSM and PGD attacks
+   - Compare different library implementations
+   - **Time**: ~5 minutes
+3. **Exercise 3**: Foolbox Evasion Attacks (`week-3/exercises/exercise_3_foolbox_evasion_attacks.py`)
+   - Use Foolbox for FGSM, PGD, and L2 iterative attacks
+   - Compare multiple attack libraries
+   - **Time**: ~5 minutes
 
-**Required Reading**: Sotiropoulos Ch. 4, Foolbox documentation, ART tutorial
-**Deliverables**: Complete FGSM and PGD implementations; compare attack performance
+**Advanced Exercises** (Optional - From Scratch):
+4. **Exercise 4**: FGSM from Scratch (`week-3/exercises/exercise_4_fgsm_attack.py`)
+   - Implement FGSM algorithm manually
+   - Understand gradient computation and perturbations
+5. **Exercise 5**: PGD from Scratch (`week-3/exercises/exercise_5_pgd_attack.py`)
+   - Implement PGD with iterative refinement
+6. **Exercise 6**: Attack Visualization (`week-3/exercises/exercise_6_attack_comparison.py`)
+   - Visualize adversarial samples and compare methods
+
+**Required Reading**: Sotiropoulos Ch. 5–7, Goodfellow et al. (2015), Madry et al. (2018)
+**Deliverables**: Library-based evasion attacks (80-90% FGSM, >95% PGD), visualizations, vulnerability report
 
 ---
 

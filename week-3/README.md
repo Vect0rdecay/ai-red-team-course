@@ -51,89 +51,176 @@ By the end of Week 3, you will be able to:
 
 ## Weekly Structure
 
-### Monday-Tuesday: FGSM Attacks (3-4 hours)
+### Monday-Tuesday: Library-Based Evasion Attacks (2-3 hours)
 
-**Activity**: Implement Fast Gradient Sign Method attacks on Week 1's model
+**Activity**: Use attack libraries (ART, CleverHans, Foolbox) to perform evasion attacks
 
 **Background**:
-- FGSM is the simplest adversarial attack
-- Takes gradient of loss w.r.t. input
-- Adds perturbation in direction of maximum loss increase
-- Single-step attack (fast but less powerful)
+- Professional attack libraries provide pre-built implementations
+- Faster to use than building from scratch
+- Demonstrates real-world attack tools
+- Establishes baseline attack success rates
 
 **Exercises**:
-1. **exercise_1_fgsm_attack.py**: Implement FGSM from scratch
-2. **exercise_2_fgsm_visualization.py**: Visualize adversarial samples and perturbations
+1. **exercise_1_art_evasion_attacks.py**: Use ART for FGM and PGD attacks
+2. **exercise_2_cleverhans_evasion_attacks.py**: Use CleverHans for FGSM and PGD
+3. **exercise_3_foolbox_evasion_attacks.py**: Use Foolbox for multiple attack types
 
-**Expected Results**: 80-90% evasion rate with ε=0.3 perturbation
+**Expected Results**: 
+- FGSM/FGM: 80-90% evasion rate
+- PGD: >95% evasion rate
 
 ---
 
-### Wednesday-Thursday: PGD Attacks (4-5 hours)
+### Wednesday-Thursday: From-Scratch Implementation (Optional, 3-4 hours)
 
-**Activity**: Implement Projected Gradient Descent for stronger evasion attacks
+**Activity**: Implement attacks from scratch for deeper understanding
 
 **Background**:
-- PGD is FGSM with multiple iterations
-- More powerful than FGSM (achieving >95% evasion)
-- Iteratively applies FGSM with projection to bound perturbation
-- Standard benchmark for model robustness
+- Building attacks from scratch provides deeper understanding
+- Helps understand attack mechanics
+- Useful for custom attack development
 
-**Exercises**:
-1. **exercise_3_pgd_attack.py**: Implement PGD from scratch
-2. **exercise_4_attack_comparison.py**: Compare FGSM vs PGD performance
+**Exercises** (Optional):
+1. **exercise_4_fgsm_attack.py**: Implement FGSM from scratch
+2. **exercise_5_pgd_attack.py**: Implement PGD from scratch
 
-**Expected Results**: >95% evasion rate with same perturbation budget
+**Expected Results**: Same evasion rates as library implementations
 
 ---
 
-### Friday: Membership Inference & Attack Analysis (2-3 hours)
+### Friday: Visualization and Reporting (2-3 hours)
 
-**Activity**: Run membership inference attacks using ART and analyze results
-
-**Background**:
-- ART (Adversarial Robustness Toolbox) provides pre-built attacks
-- Test membership inference as quality check
-- Analyze which samples are easiest/hardest to attack
-- Create vulnerability report for Week 1 model
+**Activity**: Visualize attacks and create vulnerability reports
 
 **Exercises**:
-1. **exercise_5_art_membership.py**: Use ART for membership inference
-2. **exercise_6_vulnerability_report.py**: Document all findings in pentest format
+1. **exercise_6_attack_comparison.py**: Visualize and compare attacks
+2. **exercise_7_vulnerability_report.py**: Document all findings in pentest format
 
 ---
 
-## Coding Exercises Overview
+## Creative Challenges (New)
 
-### Exercise 1: FGSM Attack Implementation
-**File**: `exercise_1_fgsm_attack.py` + `.ipynb`
+These challenges enhance learning through video creation, tool comparison, real-world scenarios, and professional visualizations.
+
+### Challenge 1: Adversarial Attack Demo Video (1.5 hours)
+
+**Objective**: Create short video demonstrating adversarial attack.
+
+**Task**: Record 2-3 minute video showing: clean image → attack → fooled model. Include narration explaining the attack and business impact.
+
+**Deliverable**: `week-3/attack_demo_video.mp4`
+
+**Details**: See `week-3/challenges/challenge_1_attack_demo_video.md`
+
+---
+
+### Challenge 2: Attack Library Comparison Matrix (1 hour)
+
+**Objective**: Compare attack libraries (ART, CleverHans, Foolbox) for tool selection.
+
+**Task**: Test same attack (FGSM) with all three libraries. Compare: ease of use, attack success rate, speed, documentation, flexibility, community support.
+
+**Deliverable**: `week-3/tool_comparison_matrix.md`
+
+**Details**: See `week-3/challenges/challenge_2_tool_comparison.md`
+
+---
+
+### Challenge 3: Real-World Evasion Scenario - Fraud Detection Bypass (2 hours)
+
+**Objective**: Simulate real-world evasion attack on fraud detection system.
+
+**Task**: Use MNIST as proxy for transaction features. Craft adversarial samples that evade fraud detection while maintaining transaction validity. Create client-ready report.
+
+**Deliverable**: `week-3/fraud_evasion_report.md`
+
+**Details**: See `week-3/challenges/challenge_3_fraud_evasion.md`
+
+---
+
+### Challenge 4: Visualization Gallery (1 hour)
+
+**Objective**: Create presentation-quality attack visualizations.
+
+**Task**: Create 3+ professional visualizations: before/after adversarial samples, perturbation heatmap, attack success vs epsilon. Focus on client-presentation quality.
+
+**Deliverable**: `week-3/visualization_gallery/` directory with images and documentation
+
+**Details**: See `week-3/challenges/challenge_4_visualization_gallery.md`
+
+---
+
+## Simplified Exercises (Recommended)
+
+These simplified exercises use attack libraries first, then build from scratch.
+
+### Exercise 1: ART Evasion Attacks
+**File**: `exercise_1_art_evasion_attacks.py`
+**Objective**: Perform evasion attacks using Adversarial Robustness Toolbox (ART)
+
+**What You'll Learn**:
+- Using ART to generate adversarial examples
+- Fast Gradient Method (FGM) attack
+- Projected Gradient Descent (PGD) attack
+- Measuring attack effectiveness with libraries
+
+**Time**: ~5 minutes
+**Run**: `python exercise_1_art_evasion_attacks.py`
+
+---
+
+### Exercise 2: CleverHans Evasion Attacks
+**File**: `exercise_2_cleverhans_evasion_attacks.py`
+**Objective**: Perform evasion attacks using CleverHans library
+
+**What You'll Learn**:
+- CleverHans attack implementations
+- Fast Gradient Sign Method (FGSM)
+- PGD with CleverHans
+- Comparing different library implementations
+
+**Time**: ~5 minutes
+**Run**: `python exercise_2_cleverhans_evasion_attacks.py`
+
+---
+
+### Exercise 3: Foolbox Evasion Attacks
+**File**: `exercise_3_foolbox_evasion_attacks.py`
+**Objective**: Perform evasion attacks using Foolbox library
+
+**What You'll Learn**:
+- Using Foolbox for adversarial attacks
+- FGSM, PGD, and L2 iterative attacks
+- Comparing different attack libraries
+- Understanding attack library differences
+
+**Time**: ~5 minutes
+**Run**: `python exercise_3_foolbox_evasion_attacks.py`
+
+---
+
+## Advanced Exercises (Optional - From Scratch Implementation)
+
+For deeper understanding, implement attacks from scratch:
+
+### Exercise 4: FGSM Attack Implementation (From Scratch)
+**File**: `exercise_4_fgsm_attack.py` + `.ipynb`
 **Objective**: Implement Fast Gradient Sign Method from scratch
 
 **What Students Learn**:
 - Gradient computation with PyTorch autograd
-- Creating adversarial samples
+- Creating adversarial samples manually
 - Measuring attack success rate
 - Understanding perturbation budgets
 
-**Red Team Relevance**: This is the simplest evasion attack - fast to execute, easy to understand
+**Red Team Relevance**: Understanding attack mechanics helps design better tests
 
 ---
 
-### Exercise 2: FGSM Visualization
-**File**: `exercise_2_fgsm_visualization.py` + `.ipynb`
-**Objective**: Visualize adversarial samples and perturbations
-
-**What Students Learn**:
-- Visualizing adversarial examples
-- Showing imperceptible perturbations
-- Demonstrating attack success
-- Creating compelling visualizations for reports
-
----
-
-### Exercise 3: PGD Attack Implementation
-**File**: `exercise_3_pgd_attack.py` + `.ipynb`
-**Objective**: Implement Projected Gradient Descent attacks
+### Exercise 5: PGD Attack Implementation (From Scratch)
+**File**: `exercise_5_pgd_attack.py` + `.ipynb`
+**Objective**: Implement Projected Gradient Descent attacks from scratch
 
 **What Students Learn**:
 - Iterative attack optimization
@@ -143,32 +230,22 @@ By the end of Week 3, you will be able to:
 
 ---
 
-### Exercise 4: Attack Comparison
-**File**: `exercise_4_attack_comparison.py` + `.ipynb`
-**Objective**: Compare FGSM vs PGD performance
+### Exercise 6: Attack Visualization and Comparison
+**File**: `exercise_6_attack_comparison.py` + `.ipynb`
+**Objective**: Visualize and compare different attack methods
 
 **What Students Learn**:
-- Trade-off between attack power and computational cost
-- Evaluating attack effectiveness
-- Understanding perturbation budgets
-- Creating comparison visualizations
+- Visualizing adversarial examples
+- Showing imperceptible perturbations
+- Comparing library vs from-scratch implementations
+- Creating compelling visualizations for reports
+
+**Note**: Visualization functionality may be included in this exercise or separate visualization tools.
 
 ---
 
-### Exercise 5: ART Membership Inference
-**File**: `exercise_5_art_membership.py` + `.ipynb`
-**Objective**: Use ART library for membership inference
-
-**What Students Learn**:
-- Using professional attack libraries
-- Pre-built attack implementations
-- API usage for common attacks
-- Integration with existing tools
-
----
-
-### Exercise 6: Vulnerability Report
-**File**: `exercise_6_vulnerability_report.py` + `.ipynb`
+### Exercise 7: Vulnerability Report
+**File**: `exercise_7_vulnerability_report.py` + `.ipynb`
 **Objective**: Generate complete vulnerability report
 
 **What Students Learn**:
@@ -181,11 +258,22 @@ By the end of Week 3, you will be able to:
 
 ## Deliverables Checklist
 
-- [ ] FGSM attack achieving >80% evasion rate
-- [ ] PGD attack achieving >95% evasion rate
+### Core Exercises
+- [ ] ART evasion attacks (FGM and PGD) achieving expected evasion rates
+- [ ] CleverHans evasion attacks (FGSM and PGD) demonstrating library usage
+- [ ] Foolbox attacks demonstrating additional attack methods
+- [ ] (Optional) From-scratch FGSM implementation
+- [ ] (Optional) From-scratch PGD implementation
+- [ ] Attack comparison analysis (library vs from-scratch, FGSM vs PGD)
+
+### Creative Challenges (New)
+- [ ] `attack_demo_video.mp4` - Video demonstration of attack
+- [ ] `tool_comparison_matrix.md` - Library comparison guide
+- [ ] `fraud_evasion_report.md` - Real-world scenario report
+- [ ] `visualization_gallery/` - Professional attack visualizations
+
+### Reporting & Documentation
 - [ ] Visualizations of adversarial samples and perturbations
-- [ ] Attack comparison analysis (FGSM vs PGD)
-- [ ] Membership inference results using ART
 - [ ] Complete vulnerability report with all findings
 - [ ] Updated portfolio with Week 3 work
 

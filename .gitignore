@@ -14,3 +14,25 @@ __pycache__/
 data/
 models/*.pt
 models/*.h5
+
+# Planning and internal development documents
+ALL_WEEKS_AUDIT.md
+COURSE_IMPROVEMENT_CHECKLIST.md
+RECONFIGURATION_COMPLETE.md
+WEEK_*_RECONFIGURATION_PROPOSAL.md
+FILE_NAMING_VERIFICATION.md
+*_PLAN.md
+*_plan.md
+*_AUDIT.md
+*_audit.md
+*_CHECKLIST.md
+*_checklist.md
+*_PROPOSAL.md
+*_proposal.md
+*_ENHANCEMENT*.md
+*_enhancement*.md
+
+# Week-specific planning documents (keep READMEs but exclude planning docs)
+week-*/WEEK*_*.md
+week-*/PLANNING*.md
+week-*/planning*.md

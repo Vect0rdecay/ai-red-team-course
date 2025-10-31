@@ -15,13 +15,14 @@ ai-red-team-course/
 │   ├── README.md                  # Week objectives and overview
 │   ├── WEEK1_SUMMARY.md           # One-page summary
 │   ├── exercises/                 # Python scripts
-│   │   ├── exercise_1_mnist_classifier.py
-│   │   ├── exercise_2_model_queries.py
-│   │   └── exercise_3_text_generator.py
+│   │   ├── exercise_1_simple_mnist_train.py      # Simplified: Train model
+│   │   ├── exercise_2_simple_model_queries.py    # Simplified: Query model
+│   │   ├── exercise_3_model_sensitivity.py      # Simplified: Test sensitivity
+│   │   ├── exercise_4_simple_deployment.py      # Simplified: Deploy model
+│   │   ├── exercise_1_mnist_classifier.py       # Original (full implementation)
+│   │   ├── exercise_2_model_queries.py          # Original (full implementation)
+│   │   └── exercise_3_text_generator.py          # Original (full implementation)
 │   ├── notebooks/                 # Jupyter notebooks
-│   │   ├── exercise_1_mnist_classifier.ipynb
-│   │   ├── exercise_2_model_queries.ipynb
-│   │   └── exercise_3_text_generator.ipynb
 │   └── notes/                     # Student notes directory
 │
 ├── week-2/                        # Week 2: Adversarial AI Intro
@@ -37,10 +38,13 @@ ai-red-team-course/
 ├── week-3/                        # Week 3: Evasion & Inference Attacks
 │   ├── README.md
 │   ├── exercises/                 # Python scripts
-│   │   ├── exercise_1_fgsm_attack.py
-│   │   ├── exercise_2_pgd_attack.py
-│   │   ├── exercise_3_attack_comparison.py
-│   │   └── *.py
+│   │   ├── exercise_1_art_evasion_attacks.py     # Simplified: ART library
+│   │   ├── exercise_2_cleverhans_evasion_attacks.py # Simplified: CleverHans library
+│   │   ├── exercise_3_foolbox_evasion_attacks.py # Simplified: Foolbox library
+│   │   ├── exercise_4_fgsm_attack.py             # Advanced: From scratch
+│   │   ├── exercise_5_pgd_attack.py             # Advanced: From scratch
+│   │   ├── exercise_6_attack_comparison.py      # Visualization
+│   │   └── exercise_7_vulnerability_report.py    # Reporting
 │   ├── notebooks/                 # Jupyter notebooks
 │   └── notes/                     # Student notes directory
 │

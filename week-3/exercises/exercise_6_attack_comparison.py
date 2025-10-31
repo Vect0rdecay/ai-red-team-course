@@ -1,5 +1,5 @@
 """
-Week 3 - Exercise 3: FGSM vs PGD Attack Comparison
+Week 3 - Exercise 6: FGSM vs PGD Attack Comparison
 
 Objective: Compare FGSM and PGD attack performance
 

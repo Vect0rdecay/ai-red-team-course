@@ -51,6 +51,74 @@ By the end of Week 1, you will be able to:
 
 ---
 
+## Creative Challenges (New)
+
+These challenges enhance learning through real-world scenarios, visual exercises, and portfolio building.
+
+### Challenge 1: Model Autopsy - Real-World ML Security Incident Analysis (2 hours)
+
+**Objective**: Analyze a real-world ML security incident to connect theory to practice.
+
+**Task**: Research and analyze adversarial patch attacks on autonomous vehicles. Create attack timeline, map to OWASP ML Top 10, analyze impact.
+
+**Deliverable**: `week-1/case_study_analysis.md`
+
+**Details**: See `week-1/challenges/challenge_1_model_autopsy.md`
+
+---
+
+### Challenge 2: Build Your Attack Surface Map (1.5 hours)
+
+**Objective**: Create visual map of ML system attack surfaces.
+
+**Task**: Draw complete ML pipeline (data collection → deployment → inference) and identify attack vectors at each stage. Annotate with threat actors, vulnerabilities, and defenses.
+
+**Deliverable**: `week-1/attack_surface_map.png` + `week-1/attack_surface_map.md`
+
+**Details**: See `week-1/challenges/challenge_2_attack_surface_map.md`
+
+---
+
+### Challenge 3: Pentest Methodology Translation Challenge (1 hour)
+
+**Objective**: Translate traditional pentest scenarios to AI/ML security equivalents.
+
+**Task**: Given 5 traditional pentest scenarios (SQL injection, XSS, file upload, etc.), identify AI/ML equivalents, explain connections, and map to OWASP ML Top 10.
+
+**Deliverable**: `week-1/methodology_translation.md`
+
+**Details**: See `week-1/challenges/challenge_3_methodology_translation.md`
+
+---
+
+### Challenge 4: Portfolio Milestone - Week 1 Showcase (30 min)
+
+**Objective**: Create first portfolio entry documenting Week 1 accomplishments.
+
+**Task**: Write summary, include visual evidence (model metrics, attack surface map), list deliverables, highlight skills.
+
+**Deliverable**: Portfolio update with Week 1 section
+
+**Details**: See `week-1/challenges/challenge_4_portfolio_showcase.md`
+
+---
+
+## Reading Enhancement
+
+### Reading Reflection Template
+
+Use the template to reflect on required reading each week:
+- Document key concepts learned
+- Connect to pentesting experience
+- Identify questions and research needs
+- Plan practical applications
+
+**Template**: `week-1/challenges/reading_reflection_template.md`
+
+**Deliverable**: `week-1/reading_reflection.md`
+
+---
+
 ## Coding Exercises
 
 ### Exercise 1: Build and Train MNIST Classifier (3-4 hours)
@@ -197,13 +265,25 @@ By the end of Week 1, you will be able to:
 
 ## Deliverables Checklist
 
+### Core Exercises
 - [ ] `mnist_classifier.ipynb` - Trained CNN model (>95% accuracy)
 - [ ] `model_queries.ipynb` - Query examples and analysis
 - [ ] `text_generator.ipynb` - Working RNN text generator
 - [ ] `model_deployment_notes.md` - FastAPI deployment documentation
+
+### Written Exercises
 - [ ] `owasp_ml_mapping.md` - Vulnerability mapping document
 - [ ] `ml_threat_model.md` - Complete threat model
 - [ ] `ai_pentest_methodology.md` - Methodology comparison
+
+### Creative Challenges (New)
+- [ ] `case_study_analysis.md` - Real-world incident analysis
+- [ ] `attack_surface_map.png` + `attack_surface_map.md` - Visual attack surface map
+- [ ] `methodology_translation.md` - Pentest scenario translations
+- [ ] Portfolio Week 1 showcase entry
+
+### Reading & Reflection
+- [ ] `reading_reflection.md` - Reading reflection using template
 - [ ] Updated `lab-notebook.md` with all commands and findings
 
 ---
@@ -212,12 +292,22 @@ By the end of Week 1, you will be able to:
 
 You've successfully completed Week 1 when:
 
+### Technical Skills
 1. ✅ Your MNIST classifier achieves >95% test accuracy
 2. ✅ You can query your model and interpret predictions
-3. ✅ You've created a working text generator
-4. ✅ You've mapped all 10 OWASP ML vulnerabilities with web security analogies
-5. ✅ You've created a comprehensive ML threat model
-6. ✅ You can explain how pentest methodology maps to AI security
+3. ✅ You've created a working text generator (optional)
+4. ✅ You understand model sensitivity and baseline behavior
+
+### Security Knowledge
+5. ✅ You've mapped all 10 OWASP ML vulnerabilities with web security analogies
+6. ✅ You've created a comprehensive ML threat model
+7. ✅ You can explain how pentest methodology maps to AI security
+8. ✅ You've analyzed a real-world ML security incident
+
+### Portfolio & Documentation
+9. ✅ You've created your attack surface map
+10. ✅ You've completed your Week 1 portfolio showcase
+11. ✅ You've reflected on required reading and connected it to pentesting
 
 ---
 

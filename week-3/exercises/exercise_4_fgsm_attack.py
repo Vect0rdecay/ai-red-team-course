@@ -1,5 +1,5 @@
 """
-Week 3 - Exercise 1: FGSM (Fast Gradient Sign Method) Attack
+Week 3 - Exercise 4: FGSM (Fast Gradient Sign Method) Attack (From Scratch)
 
 Objective: Implement FGSM from scratch to generate adversarial samples
 

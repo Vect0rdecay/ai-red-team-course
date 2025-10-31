@@ -1,20 +1,123 @@
 # Week 1 Exercises
 
-## Available Formats
+## Simplified Exercises (Recommended)
 
-All exercises are available in **two formats** for maximum flexibility:
+These simplified exercises contain minimal working code to quickly understand ML foundations and model behavior.
 
-### 1. Python Scripts (.py)
-- **Best for**: Automated execution, batch processing, production environments
-- **Use when**: You want to run the entire exercise in one go
-- **Example**: `python exercise_1_mnist_classifier.py`
+### Exercise 1: Train MNIST Model
+**File:** `exercise_1_simple_mnist_train.py`
 
-### 2. Jupyter Notebooks (.ipynb)
-- **Best for**: Interactive learning, experimentation, visualization
-- **Use when**: You want to run cells individually, modify and test iteratively
-- **Example**: `jupyter notebook exercise_1_mnist_classifier.ipynb`
+**Objective**: Train a simple CNN on MNIST dataset
 
-## Exercises Overview
+**What you'll learn:**
+- Minimal code for loading and preprocessing MNIST
+- Simple CNN architecture
+- Basic training loop
+- Model saving for later exercises
+
+**Time**: ~10 minutes
+
+**Run:** `python exercise_1_simple_mnist_train.py`
+
+---
+
+### Exercise 2: Query Model and Analyze Predictions
+**File:** `exercise_2_simple_model_queries.py`
+
+**Objective**: Learn to query ML models and understand baseline behavior
+
+**What you'll learn:**
+- Loading saved models
+- Making predictions and extracting confidence scores
+- Analyzing correct vs incorrect predictions
+- Understanding baseline model behavior
+
+**Prerequisites**: Run Exercise 1 first to generate the model
+
+**Time**: ~5 minutes
+
+**Run:** `python exercise_2_simple_model_queries.py`
+
+---
+
+### Exercise 3: Model Sensitivity Analysis
+**File:** `exercise_3_model_sensitivity.py`
+
+**Objective**: Understand how models respond to small input changes
+
+**What you'll learn:**
+- Testing model behavior with modified inputs
+- Observing how confidence scores change
+- Understanding model sensitivity
+- Foundation for understanding adversarial attacks
+
+**Prerequisites**: Run Exercise 1 first to generate the model
+
+**Time**: ~5 minutes
+
+**Run:** `python exercise_3_model_sensitivity.py`
+
+---
+
+### Exercise 4: Simple Model Deployment (Optional)
+**File:** `exercise_4_simple_deployment.py`
+
+**Objective**: Deploy model as a basic API endpoint
+
+**What you'll learn:**
+- Creating FastAPI endpoints for ML models
+- Basic model serving
+- Understanding production deployment basics
+
+**Prerequisites**: Run Exercise 1 first to generate the model
+
+**Time**: ~10 minutes
+
+**Run:** `python exercise_4_simple_deployment.py`
+
+---
+
+## Getting Started (Simplified Exercises)
+
+### Prerequisites
+- Python 3.8+
+- PyTorch
+- FastAPI (for Exercise 4): `pip install fastapi uvicorn`
+
+### Quick Setup
+```bash
+# Install all dependencies
+pip install torch torchvision numpy fastapi uvicorn
+```
+
+### Running Exercises
+```bash
+cd week-1/exercises
+
+# Step 1: Train the model
+python exercise_1_simple_mnist_train.py
+
+# Step 2: Query and analyze the model
+python exercise_2_simple_model_queries.py
+
+# Step 3: Test model sensitivity
+python exercise_3_model_sensitivity.py
+
+# Step 4: (Optional) Deploy model as API
+python exercise_4_simple_deployment.py
+```
+
+---
+
+## Original Exercises (Still Available)
+
+The original detailed exercises remain in this directory for reference:
+- `exercise_1_mnist_classifier.py` - Full CNN training with TODOs
+- `exercise_2_model_queries.py` - Model analysis and querying
+- `exercise_3_text_generator.py` - Text generation with RNN
+- `exercise_4_fastapi_deployment.md` - Model deployment guide
+
+## Exercises Overview (Original)
 
 ### Exercise 1: MNIST Classifier
 **Files:**
@@ -96,7 +199,7 @@ All exercises are available in **two formats** for maximum flexibility:
 - PyTorch
 - Jupyter Notebook (for notebook format)
 
-### Setup
+### Setup (Original Exercises)
 ```bash
 # Install dependencies
 pip install torch torchvision matplotlib numpy seaborn scikit-learn fastapi uvicorn
@@ -105,7 +208,7 @@ pip install torch torchvision matplotlib numpy seaborn scikit-learn fastapi uvic
 pip install jupyter notebook
 ```
 
-### Running Exercises
+### Running Exercises (Original)
 
 **Option 1: Python Scripts**
 ```bash
@@ -119,7 +222,7 @@ jupyter notebook
 # Then open exercise_1_mnist_classifier.ipynb
 ```
 
-## Important Notes
+## Important Notes (Original Exercises)
 
 1. **Exercise Completion**: All exercises are ~85% complete with TODOs to fill in
 2. **Active Learning**: Don't just read - complete the TODOs to build understanding

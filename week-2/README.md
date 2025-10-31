@@ -146,6 +146,58 @@ By the end of Week 2, you will be able to:
 
 ---
 
+## Creative Challenges (New)
+
+These challenges enhance learning through investigation scenarios, decision-making exercises, optimization challenges, and research implementation.
+
+### Challenge 1: Membership Inference Challenge - Detective Mode (2 hours)
+
+**Objective**: Perform membership inference investigation using incident response methodology.
+
+**Task**: Approach membership inference as a security investigation. Create professional investigation report with reconnaissance, hypothesis formation, attack execution, evidence analysis, and recommendations.
+
+**Deliverable**: `week-2/investigation_report.md`
+
+**Details**: See `week-2/challenges/challenge_1_detective_mode.md`
+
+---
+
+### Challenge 2: Attack Taxonomy Decision Tree (1 hour)
+
+**Objective**: Create visual decision tree for attack selection.
+
+**Task**: Build flowchart to help choose which attack to use based on model access, data access, attack goal, time constraints, and stealth requirements.
+
+**Deliverable**: `week-2/attack_decision_tree.md` or `.png`
+
+**Details**: See `week-2/challenges/challenge_2_attack_decision_tree.md`
+
+---
+
+### Challenge 3: Shadow Model Build-Off (2 hours)
+
+**Objective**: Optimize shadow model efficiency under query constraints.
+
+**Task**: Build most effective shadow model with limited queries (simulating API rate limits). Test optimization strategies: smart sampling, transfer learning, active learning, ensemble approaches.
+
+**Deliverable**: `week-2/shadow_model_optimization.md`
+
+**Details**: See `week-2/challenges/challenge_3_shadow_model_buildoff.md`
+
+---
+
+### Challenge 4: Paper Reading & Implementation Challenge (3 hours)
+
+**Objective**: Read research paper, extract technique, implement it, create presentation.
+
+**Task**: Choose one paper from provided list, read and understand it, implement the key technique, test on your model, create 5-slide presentation.
+
+**Deliverable**: `week-2/paper_presentation.md` + implementation code
+
+**Details**: See `week-2/challenges/challenge_4_paper_challenge.md`
+
+---
+
 ## Coding Exercises Overview
 
 ### Exercise 1: Membership Inference Attack
@@ -192,11 +244,20 @@ By the end of Week 2, you will be able to:
 
 ## Deliverables Checklist
 
+### Core Exercises
 - [ ] AI Pentest Methodology document mapping traditional → AI pentest phases
 - [ ] Membership inference attack script with 60%+ success rate
 - [ ] Shadow model implementation
-- [ ] Research paper technique implementation
 - [ ] Vulnerability report with executive summary and technical details
+
+### Creative Challenges (New)
+- [ ] `investigation_report.md` - Membership inference investigation (Detective Mode)
+- [ ] `attack_decision_tree.md` or `.png` - Visual attack selection guide
+- [ ] `shadow_model_optimization.md` - Query efficiency optimization results
+- [ ] `paper_presentation.md` + implementation - Research paper implementation
+
+### Research & Documentation
+- [ ] Research paper technique implementation (if different from Challenge 4)
 - [ ] Updated portfolio with Week 2 work
 
 ---

@@ -1,0 +1,103 @@
+"""
+Week 3 - Exercise 2 (Simplified): CleverHans Evasion Attacks on MNIST
+
+Objective: Attack the trained MNIST model using CleverHans library.
+
+This demonstrates different evasion attack methods from CleverHans.
+FGSM and PGD attacks are performed using CleverHans functions.
+"""
+
+import torch
+import torch.nn as nn
+import numpy as np
+from torchvision import datasets, transforms
+from cleverhans.torch.attacks.fast_gradient_method import fast_gradient_method
+from cleverhans.torch.attacks.projected_gradient_descent import projected_gradient_descent
+
+# Load the trained model (same architecture as training script)
+class SimpleCNN(nn.Module):
+    def __init__(self):
+        super(SimpleCNN, self).__init__()
+        self.conv1 = nn.Conv2d(1, 32, 3, padding=1)
+        self.conv2 = nn.Conv2d(32, 64, 3, padding=1)
+        self.pool = nn.MaxPool2d(2, 2)
+        self.fc1 = nn.Linear(64 * 7 * 7, 128)
+        self.fc2 = nn.Linear(128, 10)
+        
+    def forward(self, x):
+        x = self.pool(torch.relu(self.conv1(x)))
+        x = self.pool(torch.relu(self.conv2(x)))
+        x = x.view(-1, 64 * 7 * 7)
+        x = torch.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
+
+# Load model
+from pathlib import Path
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model = SimpleCNN().to(device)
+model_path = Path(__file__).parent.parent.parent / 'models' / 'mnist_simple.pt'
+model.load_state_dict(torch.load(model_path, map_location=device))
+model.eval()
+
+print("Model loaded successfully")
+
+# Load test data
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.1307,), (0.3081,))
+])
+
+test_dataset = datasets.MNIST(root='./data', train=False, download=True, transform=transform)
+test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=100, shuffle=False)
+
+# Get a small sample for attacks
+images, labels = next(iter(test_loader))
+images = images.to(device)
+labels = labels.to(device)
+
+# Evaluate baseline accuracy
+with torch.no_grad():
+    outputs = model(images)
+    _, predicted = torch.max(outputs, 1)
+    baseline_correct = (predicted == labels).sum().item()
+    baseline_acc = baseline_correct / len(labels)
+print(f"\nBaseline accuracy: {baseline_acc*100:.2f}%")
+
+# Attack 1: Fast Gradient Sign Method (FGSM)
+print("\nPerforming FGSM attack...")
+images_fgsm = fast_gradient_method(model_fn=model, x=images, eps=0.3, norm=np.inf)
+
+with torch.no_grad():
+    outputs_fgsm = model(images_fgsm)
+    _, predicted_fgsm = torch.max(outputs_fgsm, 1)
+    fgsm_correct = (predicted_fgsm == labels).sum().item()
+    fgsm_acc = fgsm_correct / len(labels)
+
+print(f"Accuracy after FGSM attack: {fgsm_acc*100:.2f}%")
+print(f"Attack success rate: {(1-fgsm_acc)*100:.2f}%")
+
+# Attack 2: Projected Gradient Descent (PGD)
+print("\nPerforming PGD attack...")
+images_pgd = projected_gradient_descent(model_fn=model, x=images, eps=0.3, eps_iter=0.01, nb_iter=40, norm=np.inf)
+
+with torch.no_grad():
+    outputs_pgd = model(images_pgd)
+    _, predicted_pgd = torch.max(outputs_pgd, 1)
+    pgd_correct = (predicted_pgd == labels).sum().item()
+    pgd_acc = pgd_correct / len(labels)
+
+print(f"Accuracy after PGD attack: {pgd_acc*100:.2f}%")
+print(f"Attack success rate: {(1-pgd_acc)*100:.2f}%")
+
+# Note: C&W attack removed as it's more complex and requires different API
+print("\nNote: C&W attack requires more complex setup. FGSM and PGD demonstrate the core attack concepts.")
+
+# Summary
+print("\n" + "="*50)
+print("Attack Summary:")
+print(f"  Baseline accuracy: {baseline_acc*100:.2f}%")
+print(f"  After FGSM attack: {fgsm_acc*100:.2f}%")
+print(f"  After PGD attack: {pgd_acc*100:.2f}%")
+print("="*50)
+
