@@ -133,7 +133,7 @@ This mimics real AI pentest workflow:
 ### Objective 5: Establish Testing Infrastructure
 **Why This Matters for Red Team Work:**
 - Professional pentesting requires organized tools, data, and documentation
-- AI security testing needs specific tooling (PyTorch, Jupyter, adversarial libraries)
+- AI security testing needs specific tooling (PyTorch, adversarial libraries)
 - Proper environment setup prevents "works on my machine" issues during client engagements
 
 **What You'll Set Up:**
@@ -224,7 +224,6 @@ Week 1 skills used: Model querying, threat modeling, OWASP framework
 ### Tools & Libraries
 - PyTorch (model building)
 - Matplotlib (visualization of results)
-- Jupyter Notebooks (interactive development)
 - FastAPI (model serving - understanding deployment)
 
 ### External References (for context, not copying)
@@ -238,8 +237,8 @@ Week 1 skills used: Model querying, threat modeling, OWASP framework
 
 Each deliverable directly supports AI red team work:
 
-- [ ] **`mnist_classifier.ipynb`** - Working model you'll attack in Week 3
-- [ ] **`text_generator.ipynb`** - Understanding generative models for Week 5 LLM work
+- [ ] **`mnist_classifier.py`** - Working model you'll attack in Week 3
+- [ ] **`text_generator.py`** - Understanding generative models for Week 5 LLM work
 - [ ] **`ml_attack_surfaces.md`** - Threat model template for client engagements
 - [ ] **`owasp_ml_mapping.md`** - Vulnerability reference guide for scoping
 - [ ] **Lab notebook entries** - Documenting baseline metrics for attack impact measurement

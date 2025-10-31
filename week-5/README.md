@@ -122,7 +122,7 @@ By the end of Week 5, you will be able to:
 ## Coding Exercises
 
 ### Exercise 1: Jailbreak Prompt Crafting
-**File**: `exercise_1_jailbreak_prompts.py` or `.ipynb`
+**File**: `exercise_1_jailbreak_prompts.py`
 **Objective**: Craft and test jailbreak prompts
 
 **What You'll Learn**:
@@ -136,7 +136,7 @@ By the end of Week 5, you will be able to:
 ---
 
 ### Exercise 2: Prompt Injection Attack Chain
-**File**: `exercise_2_prompt_injection_chain.py` or `.ipynb`
+**File**: `exercise_2_prompt_injection_chain.py`
 **Objective**: Chain multiple prompt injections
 
 **What You'll Learn**:

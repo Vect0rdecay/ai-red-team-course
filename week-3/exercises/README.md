@@ -2,8 +2,7 @@
 
 This directory contains coding exercises for Week 3.
 
-Exercises are provided in both:
+Exercises are provided in:
 - `.py` format (Python scripts)
-- `.ipynb` format (Jupyter notebooks)
 
 All exercises are approximately 85% complete with TODO sections for students to fill in.

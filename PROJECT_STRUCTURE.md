@@ -9,11 +9,15 @@ ai-red-team-course/
 ├── README.md                      # Main course overview
 ├── COURSE_IMPROVEMENT_CHECKLIST.md # Development tracking
 ├── ALL_WEEKS_AUDIT.md             # Course-wide audit
+├── FILE_NAMING_VERIFICATION.md    # File naming verification
 ├── PROJECT_STRUCTURE.md           # This file
+├── requirements.txt               # Python dependencies
 │
 ├── week-1/                        # Week 1: ML Foundations
 │   ├── README.md                  # Week objectives and overview
 │   ├── WEEK1_SUMMARY.md           # One-page summary
+│   ├── WEEK1_LEARNING_OBJECTIVES.md # Learning objectives
+│   ├── requirements.txt           # Week-specific dependencies
 │   ├── exercises/                 # Python scripts
 │   │   ├── exercise_1_simple_mnist_train.py      # Simplified: Train model
 │   │   ├── exercise_2_simple_model_queries.py    # Simplified: Query model
@@ -22,7 +26,8 @@ ai-red-team-course/
 │   │   ├── exercise_1_mnist_classifier.py       # Original (full implementation)
 │   │   ├── exercise_2_model_queries.py          # Original (full implementation)
 │   │   └── exercise_3_text_generator.py          # Original (full implementation)
-│   ├── notebooks/                 # Jupyter notebooks
+│   ├── challenges/                # Additional challenges
+│   ├── models/                    # Trained models (gitignored)
 │   └── notes/                     # Student notes directory
 │
 ├── week-2/                        # Week 2: Adversarial AI Intro
@@ -32,7 +37,6 @@ ai-red-team-course/
 │   │   ├── exercise_1_membership_inference.py
 │   │   ├── exercise_2_shadow_models.py
 │   │   └── exercise_3_vulnerability_reporting.py
-│   ├── notebooks/                 # Jupyter notebooks
 │   └── notes/                     # Student notes directory
 │
 ├── week-3/                        # Week 3: Evasion & Inference Attacks
@@ -45,53 +49,54 @@ ai-red-team-course/
 │   │   ├── exercise_5_pgd_attack.py             # Advanced: From scratch
 │   │   ├── exercise_6_attack_comparison.py      # Visualization
 │   │   └── exercise_7_vulnerability_report.py    # Reporting
-│   ├── notebooks/                 # Jupyter notebooks
 │   └── notes/                     # Student notes directory
 │
 ├── week-4/                        # Week 4: Poisoning & Backdoor
 │   ├── README.md
 │   ├── exercises/                 # Python scripts
-│   ├── notebooks/                 # Jupyter notebooks
 │   └── notes/                     # Student notes directory
 │
 ├── week-5/                        # Week 5: Generative AI Security
 │   ├── README.md
 │   ├── exercises/                 # Python scripts
-│   ├── notebooks/                 # Jupyter notebooks
 │   └── notes/                     # Student notes directory
 │
-├── week-6/                        # Week 6: Model Extraction & Theft
+├── week-6/                        # Week 6: Advanced LLM Red Teaming
 │   ├── README.md
 │   ├── exercises/                 # Python scripts
-│   ├── notebooks/                 # Jupyter notebooks
 │   └── notes/                     # Student notes directory
 │
-├── week-7/                        # Week 7: AI System Penetration Testing
+├── week-7/                        # Week 7: Mitigations, Evaluation & Reporting
 │   ├── README.md
 │   ├── exercises/                 # Python scripts
-│   ├── notebooks/                 # Jupyter notebooks
 │   └── notes/                     # Student notes directory
 │
 ├── week-8/                        # Week 8: Capstone Project
 │   ├── README.md
 │   ├── exercises/                 # Python scripts
-│   ├── notebooks/                 # Jupyter notebooks
+│   ├── challenges/                # Capstone challenges
 │   └── notes/                     # Student notes directory
 │
 ├── templates/                     # Reusable templates
 │   ├── vulnerability_report.md    # Report template
-│   ├── notebook_template.ipynb    # Jupyter template
 │   └── exercise_template.py       # Python exercise template
 │
 ├── scripts/                       # Helper utilities
-│   ├── setup_environment.sh       # Environment setup
-│   ├── run_tests.py               # Test runner
-│   └── convert_to_notebook.py     # Py to .ipynb converter
+│   └── setup_environment.sh       # Environment setup script
 │
 ├── data/                          # Training data (gitignored)
 │   └── .gitkeep
 │
 ├── models/                        # Trained models (gitignored)
+│   └── .gitkeep
+│
+├── attacks/                       # Attack implementations (gitignored)
+│   └── .gitkeep
+│
+├── harness/                       # Testing harness (gitignored)
+│   └── .gitkeep
+│
+├── reports/                       # Generated reports (gitignored)
 │   └── .gitkeep
 │
 ├── docs/                          # Additional documentation
@@ -110,31 +115,36 @@ Each week directory contains:
 - `exercises/`: Python scripts (`.py` files)
   - All exercises are ~85% complete with TODOs for students
   - Include comprehensive educational comments
-- `notebooks/`: Jupyter notebooks (`.ipynb` files)
-  - Interactive versions of exercises for experimentation
-  - Same content as `.py` files but in notebook format
 - `notes/`: Student notes directory
   - For personal notes and additional learning materials
+
+**Additional directories** (some weeks):
+- `challenges/`: Additional challenge exercises (Week 1, Week 8)
+- `models/`: Week-specific trained models (Week 1)
+- `requirements.txt`: Week-specific dependencies (Week 1)
 
 ### templates/
 Reusable templates for common course artifacts:
 - Vulnerability reports
-- Jupyter notebooks
 - Python exercises
 - Project proposals
 
 ### scripts/
 Helper utilities for course development and student workflows:
 - Environment setup scripts
-- Test runners
-- Format converters
-- Code quality checkers
+- Automated dependency installation
 
 ### data/ and models/
 Directories for datasets and trained models:
 - Gitignored except for `.gitkeep`
 - Students download/generate data during exercises
 - Models are generated during training exercises
+
+### attacks/, harness/, and reports/
+Additional directories for course work:
+- `attacks/`: Attack implementations and exploit code (gitignored)
+- `harness/`: Testing harness and automation scripts (gitignored)
+- `reports/`: Generated vulnerability reports and assessments (gitignored)
 
 ### docs/
 Additional documentation beyond the week directories:
@@ -147,7 +157,6 @@ Additional documentation beyond the week directories:
 - **Week READMEs**: `week-X/README.md`
 - **Week Summaries**: `week-X/WEEKX_SUMMARY.md` (not all weeks have this)
 - **Exercises (Python)**: `week-X/exercises/exercise_N_description.py`
-- **Notebooks**: `week-X/notebooks/exercise_N_description.ipynb`
 - **Templates**: `templates/template_name.file_extension`
 - **Scripts**: `scripts/script_name.sh` or `.py`
 
@@ -157,16 +166,14 @@ Additional documentation beyond the week directories:
 2. **Weekly Guide**: `week-X/README.md` - Week objectives and instructions
 3. **Quick Reference**: `week-X/WEEKX_SUMMARY.md` - Key concepts (if available)
 4. **Hands-On (Scripts)**: `week-X/exercises/` - Python scripts for coding exercises
-5. **Interactive Learning**: `week-X/notebooks/` - Jupyter notebooks for experimentation
-6. **Personal Notes**: `week-X/notes/` - Your notes and additional materials
+5. **Personal Notes**: `week-X/notes/` - Your notes and additional materials
 
 ## Exercise Philosophy
 
 All exercises follow a consistent structure:
 - **85% Complete**: Students fill in critical TODOs
 - **Educational Comments**: Explain ML/AI concepts
-- **Dual Format**: Both `.py` (in `exercises/`) and `.ipynb` (in `notebooks/`) versions
-- **Clear Separation**: Python scripts in `exercises/`, Jupyter notebooks in `notebooks/`
+- **Python Scripts Only**: All exercises are provided as `.py` files
 - **Red Team Context**: Link to offensive security applications
 - **Progressive Difficulty**: Build complexity over weeks
 
@@ -175,6 +182,5 @@ All exercises follow a consistent structure:
 When adding new content:
 1. Follow directory structure conventions
 2. Add comprehensive comments for beginners
-3. Include both script and notebook versions
-4. Update relevant README files
-5. Add to appropriate week directory
+3. Update relevant README files
+4. Add to appropriate week directory

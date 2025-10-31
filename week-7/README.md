@@ -137,7 +137,7 @@ By the end of Week 7, you will be able to:
 ## Coding Exercises
 
 ### Exercise 1: Adversarial Training Defense
-**File**: `exercise_1_adversarial_training.py` or `.ipynb`
+**File**: `exercise_1_adversarial_training.py`
 **Objective**: Implement adversarial training to improve model robustness
 
 **What You'll Learn**:
@@ -151,7 +151,7 @@ By the end of Week 7, you will be able to:
 ---
 
 ### Exercise 2: Input Sanitization and Filtering
-**File**: `exercise_2_input_sanitization.py` or `.ipynb`
+**File**: `exercise_2_input_sanitization.py`
 **Objective**: Implement input validation and filtering for LLM applications
 
 **What You'll Learn**:
@@ -165,7 +165,7 @@ By the end of Week 7, you will be able to:
 ---
 
 ### Exercise 3: MITRE ATLAS Mapping
-**File**: `exercise_3_atlas_mapping.py` or `.ipynb`
+**File**: `exercise_3_atlas_mapping.py`
 **Objective**: Map attacks to MITRE ATLAS framework
 
 **What You'll Learn**:

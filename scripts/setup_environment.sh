@@ -48,11 +48,6 @@ echo ""
 echo "Installing AI security tools..."
 pip install adversarial-robustness-toolbox foolbox
 
-# Install Jupyter for notebook support
-echo ""
-echo "Installing Jupyter and IPython..."
-pip install jupyter ipython ipykernel
-
 # Install development tools
 echo ""
 echo "Installing development tools..."
@@ -62,11 +57,6 @@ pip install black flake8 pytest
 echo ""
 echo "Installing FastAPI..."
 pip install fastapi uvicorn pydantic
-
-# Create Jupyter kernel for this environment
-echo ""
-echo "Creating Jupyter kernel..."
-python -m ipykernel install --user --name ai-red-team --display-name "AI Red Team Course"
 
 # Create data and models directories
 echo ""
@@ -83,8 +73,6 @@ echo "=================================="
 echo ""
 echo "Next steps:"
 echo "1. Activate the virtual environment: source venv/bin/activate"
-echo "2. Start Jupyter: jupyter notebook"
-echo "3. Select 'AI Red Team Course' kernel in Jupyter"
 echo ""
 echo "For CUDA support (if you have a compatible GPU), run:"
 echo "  pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118"

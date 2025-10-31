@@ -136,7 +136,7 @@ By the end of Week 6, you will be able to:
 ---
 
 ### Exercise 2: Multi-Vector Attack Chain
-**File**: `exercise_2_multi_vector.py` or `.ipynb`
+**File**: `exercise_2_multi_vector.py`
 **Objective**: Chain multiple attack techniques
 
 **What You'll Learn**:

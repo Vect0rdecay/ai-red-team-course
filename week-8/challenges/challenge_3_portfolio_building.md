@@ -311,8 +311,8 @@ Comprehensive course covering:
 ```
 projects/llm-security/
 ├── README.md           # Project overview
-├── notebooks/
-│   └── [notebooks]     # Jupyter notebooks
+├── scripts/
+│   └── [scripts]       # Python scripts
 ├── reports/
 │   └── assessment.pdf  # Detailed report
 └── code/

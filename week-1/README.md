@@ -133,7 +133,7 @@ Use the template to reflect on required reading each week:
 5. Save model to `week-1/models/mnist_cnn.pt`
 6. Visualize loss curve and accuracy over epochs
 
-**Deliverable**: `week-1/mnist_classifier.ipynb`
+**Deliverable**: `week-1/mnist_classifier.py`
 
 **Red Team Context**: This model becomes your evasion attack target in Week 3. The baseline accuracy you achieve here (e.g., 98%) is what you'll reduce to <5% using adversarial samples.
 
@@ -150,7 +150,7 @@ Use the template to reflect on required reading each week:
 4. Visualize 5 correctly classified images and 5 misclassified images
 5. Identify decision boundary patterns
 
-**Deliverable**: `week-1/model_queries.ipynb`
+**Deliverable**: `week-1/model_queries.py`
 
 **Red Team Context**: Before attacking, you must understand normal model behavior. This is the equivalent of service enumeration in traditional pentesting.
 
@@ -166,7 +166,7 @@ Use the template to reflect on required reading each week:
 3. Generate 10 sample outputs
 4. Analyze how model generates text (character-by-character prediction)
 
-**Deliverable**: `week-1/text_generator.ipynb`
+**Deliverable**: `week-1/text_generator.py`
 
 **Red Team Context**: LLMs work similarly - understanding this foundation is crucial for prompt injection and jailbreak attacks in Week 5.
 
@@ -266,9 +266,9 @@ Use the template to reflect on required reading each week:
 ## Deliverables Checklist
 
 ### Core Exercises
-- [ ] `mnist_classifier.ipynb` - Trained CNN model (>95% accuracy)
-- [ ] `model_queries.ipynb` - Query examples and analysis
-- [ ] `text_generator.ipynb` - Working RNN text generator
+- [ ] `mnist_classifier.py` - Trained CNN model (>95% accuracy)
+- [ ] `model_queries.py` - Query examples and analysis
+- [ ] `text_generator.py` - Working RNN text generator
 - [ ] `model_deployment_notes.md` - FastAPI deployment documentation
 
 ### Written Exercises
@@ -322,7 +322,7 @@ You've successfully completed Week 1 when:
 
 **Code Review**:
 - Is your code well-commented explaining the security context?
-- Are your notebooks reproducible (include dataset loading, model definition)?
+- Are your scripts reproducible (include dataset loading, model definition)?
 - Do your visualizations clearly demonstrate model behavior?
 
 ---

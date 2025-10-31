@@ -2,7 +2,7 @@
 **From Web/Cloud Pentesting to AI Security — in 2 Months**
 
 > **Goal**: Build upon existing **n+ years of web, API, and cloud pentesting** to become a qualified **AI Red Teamer** (e.g., HiddenLayer).  
-> **Outcome**: Portfolio with attack notebooks, reports, tool contributions, and resume-ready evidence of **1+ year equivalent AI security experience**.
+> **Outcome**: Portfolio with attack scripts, reports, tool contributions, and resume-ready evidence of **1+ year equivalent AI security experience**.
 
 **Time Commitment**: 12–18 hrs/week  
 **Core Texts**:
@@ -21,12 +21,11 @@
 
 ### Course Structure
 
-Each week contains three directories:
+Each week contains two directories:
 - **`exercises/`** - Python scripts (.py files) with 85% complete implementations and TODOs
-- **`notebooks/`** - Jupyter notebooks (.ipynb) for interactive learning
 - **`notes/`** - Space for your personal notes and additional materials
 
-All exercises include comprehensive educational comments explaining ML/AI concepts for beginners. Both Python scripts and Jupyter notebooks are provided for each exercise.
+All exercises include comprehensive educational comments explaining ML/AI concepts for beginners.
 
 **Key Files**:
 - `PROJECT_STRUCTURE.md` - Detailed repository organization
@@ -123,8 +122,8 @@ All exercises include comprehensive educational comments explaining ML/AI concep
 | Activity | Details | Time | Output |
 |--------|--------|------|--------|
 | **Study** | Read ART poisoning tutorial + Sotiropoulos Ch. 5. Analogize to tainted S3 buckets. | 1–2 hrs | `week4/poisoning_notes.md` |
-| **Code** | Use ART to poison 10% of MNIST labels. Retrain. Use torchattacks to add BadNets trigger. | 3–4 hrs | `week4/poisoning_backdoor.ipynb` |
-| **Exercise** | Apply pruning defense (Sotiropoulos). Compare pre/post accuracy. Plot results. | 2 hrs | `week4/defense_pruning.ipynb` |
+| **Code** | Use ART to poison 10% of MNIST labels. Retrain. Use torchattacks to add BadNets trigger. | 3–4 hrs | `week4/poisoning_backdoor.py` |
+| **Exercise** | Apply pruning defense (Sotiropoulos). Compare pre/post accuracy. Plot results. | 2 hrs | `week4/defense_pruning.py` |
 
 ---
 
@@ -134,7 +133,7 @@ All exercises include comprehensive educational comments explaining ML/AI concep
 | Activity | Details | Time | Output |
 |--------|--------|------|--------|
 | **Study** | Garak overview. Map prompt injection → XSS. Read Sotiropoulos Ch. 6–7. | 1–2 hrs | `week5/garak_mapping.md` |
-| **Code** | Load Llama-2 (Hugging Face). Craft 10 jailbreak prompts (DAN, role-play, suffix). | 3 hrs | `week5/jailbreak_prompts.ipynb` |
+| **Code** | Load Llama-2 (Hugging Face). Craft 10 jailbreak prompts (DAN, role-play, suffix). | 3 hrs | `week5/jailbreak_prompts.py` |
 | **Exercise** | Run `garak --model_type huggingface --model_name meta-llama/Llama-2-7b-chat-hf` with 10 probes. Log results. | 2–3 hrs | `week5/garak_scan.json`, `week5/garak_findings.md` |
 
 ---
@@ -145,8 +144,8 @@ All exercises include comprehensive educational comments explaining ML/AI concep
 | Activity | Details | Time | Output |
 |--------|--------|------|--------|
 | **Study** | Purple Llama CyberSecEval guide. Read Sotiropoulos Ch. 8. | 1 hr | `week6/purplellama_notes.md` |
-| **Code** | Run 3 CyberSecEval benchmarks (jailbreak, injection, leakage) on Llama. | 3–4 hrs | `week6/cyberseceval_results.ipynb` |
-| **Exercise** | Chain garak + Purple Llama. Draft collab email to "data scientist" with mitigation recs. | 2 hrs | `week6/hybrid_attack.ipynb`, `collab/data_scientist_email.md` |
+| **Code** | Run 3 CyberSecEval benchmarks (jailbreak, injection, leakage) on Llama. | 3–4 hrs | `week6/cyberseceval_results.py` |
+| **Exercise** | Chain garak + Purple Llama. Draft collab email to "data scientist" with mitigation recs. | 2 hrs | `week6/hybrid_attack.py`, `collab/data_scientist_email.md` |
 
 ---
 
@@ -156,7 +155,7 @@ All exercises include comprehensive educational comments explaining ML/AI concep
 | Activity | Details | Time | Output |
 |--------|--------|------|--------|
 | **Study** | Sotiropoulos Ch. 9–10 + MITRE Adversarial ML Threat Matrix. | 2 hrs | `week7/mitre_matrix_notes.md` |
-| **Code** | Apply adversarial training (torchattacks) to Week 3/4 models. Measure robustness gain. | 3 hrs | `week7/adversarial_training.ipynb` |
+| **Code** | Apply adversarial training (torchattacks) to Week 3/4 models. Measure robustness gain. | 3 hrs | `week7/adversarial_training.py` |
 | **Exercise** | Write full pentest-style report on Week 5/6 attack (exec summary, risk matrix, visuals). | 3–4 hrs | `reports/llm_jailbreak_report.pdf` |
 
 ---
@@ -167,8 +166,8 @@ All exercises include comprehensive educational comments explaining ML/AI concep
 | Activity | Details | Time | Output |
 |--------|--------|------|--------|
 | **Study** | Scan 5 recent arXiv papers on multimodal attacks. Summarize trends. | 2 hrs | `week8/trends_2025.md` |
-| **Code** | Fork garak or ART. Add custom probe (e.g., cloud data poison sim). Test on hybrid model. | 3–4 hrs | `forks/garak-custom-probe/`, `week8/hybrid_attack.ipynb` |
-| **Exercise** | Run **end-to-end sim**: attack → mitigate → report. Record 3-min exec explainer video. Update resume. | 4 hrs | `sim/full_red_team_sim.ipynb`, `video/exec_explainer.mp4`, `resume.md` |
+| **Code** | Fork garak or ART. Add custom probe (e.g., cloud data poison sim). Test on hybrid model. | 3–4 hrs | `forks/garak-custom-probe/`, `week8/hybrid_attack.py` |
+| **Exercise** | Run **end-to-end sim**: attack → mitigate → report. Record 3-min exec explainer video. Update resume. | 4 hrs | `sim/full_red_team_sim.py`, `video/exec_explainer.mp4`, `resume.md` |
 
 ---
 

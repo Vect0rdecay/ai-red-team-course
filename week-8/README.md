@@ -125,7 +125,7 @@ By the end of Week 8, you will be able to:
 ## Coding Exercises
 
 ### Exercise 1: End-to-End Security Assessment
-**File**: `exercise_1_complete_assessment.py` or `.ipynb`
+**File**: `exercise_1_complete_assessment.py`
 **Objective**: Integrate all course techniques into complete workflow
 
 **What You'll Learn**:

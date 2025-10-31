@@ -122,7 +122,6 @@ The original detailed exercises remain in this directory for reference:
 ### Exercise 1: MNIST Classifier
 **Files:**
 - `exercise_1_mnist_classifier.py` (Python script)
-- `exercise_1_mnist_classifier.ipynb` (Jupyter notebook)
 
 **Objective**: Build and train a CNN for handwritten digit classification
 
@@ -141,7 +140,6 @@ The original detailed exercises remain in this directory for reference:
 ### Exercise 2: Model Queries
 **Files:**
 - `exercise_2_model_queries.py` (Python script)
-- `exercise_2_model_queries.ipynb` (Jupyter notebook)
 
 **Objective**: Learn to interact with ML models programmatically (reconnaissance)
 
@@ -160,7 +158,6 @@ The original detailed exercises remain in this directory for reference:
 ### Exercise 3: Text Generator
 **Files:**
 - `exercise_3_text_generator.py` (Python script)
-- `exercise_3_text_generator.ipynb` (Jupyter notebook)
 
 **Objective**: Build a simple RNN for character-level text generation
 
@@ -197,29 +194,18 @@ The original detailed exercises remain in this directory for reference:
 ### Prerequisites
 - Python 3.8+
 - PyTorch
-- Jupyter Notebook (for notebook format)
 
 ### Setup (Original Exercises)
 ```bash
 # Install dependencies
 pip install torch torchvision matplotlib numpy seaborn scikit-learn fastapi uvicorn
-
-# For Jupyter notebooks
-pip install jupyter notebook
 ```
 
 ### Running Exercises (Original)
 
-**Option 1: Python Scripts**
 ```bash
 cd week-1/exercises
 python exercise_1_mnist_classifier.py
-```
-
-**Option 2: Jupyter Notebooks**
-```bash
-jupyter notebook
-# Then open exercise_1_mnist_classifier.ipynb
 ```
 
 ## Important Notes (Original Exercises)

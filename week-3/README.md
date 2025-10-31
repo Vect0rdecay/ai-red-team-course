@@ -205,7 +205,7 @@ These simplified exercises use attack libraries first, then build from scratch.
 For deeper understanding, implement attacks from scratch:
 
 ### Exercise 4: FGSM Attack Implementation (From Scratch)
-**File**: `exercise_4_fgsm_attack.py` + `.ipynb`
+**File**: `exercise_4_fgsm_attack.py`
 **Objective**: Implement Fast Gradient Sign Method from scratch
 
 **What Students Learn**:
@@ -219,7 +219,7 @@ For deeper understanding, implement attacks from scratch:
 ---
 
 ### Exercise 5: PGD Attack Implementation (From Scratch)
-**File**: `exercise_5_pgd_attack.py` + `.ipynb`
+**File**: `exercise_5_pgd_attack.py`
 **Objective**: Implement Projected Gradient Descent attacks from scratch
 
 **What Students Learn**:
@@ -231,7 +231,7 @@ For deeper understanding, implement attacks from scratch:
 ---
 
 ### Exercise 6: Attack Visualization and Comparison
-**File**: `exercise_6_attack_comparison.py` + `.ipynb`
+**File**: `exercise_6_attack_comparison.py`
 **Objective**: Visualize and compare different attack methods
 
 **What Students Learn**:
@@ -245,7 +245,7 @@ For deeper understanding, implement attacks from scratch:
 ---
 
 ### Exercise 7: Vulnerability Report
-**File**: `exercise_7_vulnerability_report.py` + `.ipynb`
+**File**: `exercise_7_vulnerability_report.py`
 **Objective**: Generate complete vulnerability report
 
 **What Students Learn**:

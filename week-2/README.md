@@ -137,7 +137,7 @@ By the end of Week 2, you will be able to:
 4. Test on Week 1 model
 5. Document in vulnerability report format
 
-**Deliverable**: `week-2/paper_techniques_report.md` + working notebook
+**Deliverable**: `week-2/paper_techniques_report.md` + working script
 
 **Required Papers** (students will be provided with links):
 1. Shokri et al. (2017) "Membership Inference Attacks Against Machine Learning Models"
@@ -201,7 +201,7 @@ These challenges enhance learning through investigation scenarios, decision-maki
 ## Coding Exercises Overview
 
 ### Exercise 1: Membership Inference Attack
-**File**: `exercise_1_membership_inference.py` + `.ipynb`
+**File**: `exercise_1_membership_inference.py`
 **Objective**: Detect if specific samples were in training data
 
 **What Students Learn**:
@@ -215,7 +215,7 @@ These challenges enhance learning through investigation scenarios, decision-maki
 ---
 
 ### Exercise 2: Shadow Models and Attack Training
-**File**: `exercise_2_shadow_models.py` + `.ipynb`
+**File**: `exercise_2_shadow_models.py`
 **Objective**: Train attack models using shadow models
 
 **What Students Learn**:
@@ -229,7 +229,7 @@ These challenges enhance learning through investigation scenarios, decision-maki
 ---
 
 ### Exercise 3: AI Vulnerability Reporting
-**File**: `exercise_3_vulnerability_report.py` + `.ipynb`
+**File**: `exercise_3_vulnerability_report.py`
 **Objective**: Generate professional vulnerability findings
 
 **What Students Learn**:
