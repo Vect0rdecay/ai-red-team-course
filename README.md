@@ -11,21 +11,36 @@
 - deeplearning.ai: *Machine Learning Specialization* & *Generative AI with LLMs* (free)
 
 **Hands-On Tools**:
-- [Foolbox](https://github.com/bethgelab/foolbox) – Evasion (FGSM, PGD)
-- [Adversarial Robustness Toolbox (ART)](https://github.com/Trusted-AI/adversarial-robustness-toolbox) – Poisoning, inference
+
+**Coding Libraries** (Weeks 1-4, 7-8):
+- [Foolbox](https://github.com/bethgelab/foolbox) – Evasion attacks (FGSM, PGD)
+- [Adversarial Robustness Toolbox (ART)](https://github.com/Trusted-AI/adversarial-robustness-toolbox) – Poisoning, inference attacks
+- [CleverHans](https://github.com/cleverhans-lab/cleverhans) – Evasion attacks (FGSM, PGD)
 - [torchattacks](https://github.com/Harry24k/adversarial-attacks-pytorch) – PyTorch attack implementations
+
+**LLM Security Tools** (Weeks 5-6, optional):
 - [garak](https://github.com/leondz/garak) – LLM vulnerability scanner
 - [Purple Llama](https://github.com/meta-llama/PurpleLlama) – CyberSecEval for LLMs
+
+**CTF Platforms** (Week 5):
+- [Lakera Gandalf](https://gandalf.lakera.ai/) – Gamified prompt hacking challenges
+- [Security Café's AI Hacking Games](https://securitycafe.ro/2023/05/15/ai-hacking-games-jailbreak-ctfs/) – Prompt injection CTF challenges
+- [Hack The Box Academy](https://academy.hackthebox.com/course/preview/prompt-injection-attacks) – Prompt injection attacks course
+
+**Reading Resources** (Week 5):
+- ArXiv research papers on jailbreaks and prompt injection (see `week-5/exercises/README.md`)
+- [Embrace the Red Blog](https://embracethered.com/blog/) – AI security and red teaming
+- [InjectPrompt Blog](https://www.injectprompt.com/) – AI jailbreaks and prompt injections
 
 **Portfolio Repo**: [github.com/yourname/ai-red-team-course](https://github.com/yourname/ai-red-team-course)  
 
 ### Course Structure
 
 Each week contains two directories:
-- **`exercises/`** - Python scripts (.py files) with 85% complete implementations and TODOs
+- **`exercises/`** - Python scripts (.py files) with 85% complete implementations and TODOs, OR reading materials and CTF resources (Week 5)
 - **`notes/`** - Space for your personal notes and additional materials
 
-All exercises include comprehensive educational comments explaining ML/AI concepts for beginners.
+Most exercises include comprehensive educational comments explaining ML/AI concepts for beginners. Week 5 uses reading materials and CTF challenges instead of coding exercises.
 
 **Key Files**:
 - `PROJECT_STRUCTURE.md` - Detailed repository organization
@@ -119,22 +134,71 @@ All exercises include comprehensive educational comments explaining ML/AI concep
 ## Week 4: Poisoning & Backdoor Attacks
 **Outcomes**: Poison datasets, implant backdoors, test defenses.
 
-| Activity | Details | Time | Output |
-|--------|--------|------|--------|
-| **Study** | Read ART poisoning tutorial + Sotiropoulos Ch. 5. Analogize to tainted S3 buckets. | 1–2 hrs | `week4/poisoning_notes.md` |
-| **Code** | Use ART to poison 10% of MNIST labels. Retrain. Use torchattacks to add BadNets trigger. | 3–4 hrs | `week4/poisoning_backdoor.py` |
-| **Exercise** | Apply pruning defense (Sotiropoulos). Compare pre/post accuracy. Plot results. | 2 hrs | `week4/defense_pruning.py` |
+**Simplified Exercises** (Minimal working code):
+1. **Exercise 1**: Data Poisoning Attack (`week-4/exercises/exercise_1_data_poisoning.py`)
+   - Poison training data by flipping labels (10% of training labels)
+   - Retrain model with poisoned data
+   - Measure accuracy degradation compared to clean model
+   - Understand how poisoned data affects model behavior
+   - **Time**: ~15 minutes
+2. **Exercise 2**: Backdoor Attack Implementation (`week-4/exercises/exercise_2_backdoor_attack.py`)
+   - Implement BadNets-style backdoor attack with trigger pattern
+   - Poison training samples with trigger + target label
+   - Train model maintaining clean accuracy (>95%)
+   - Test backdoor activation rate (>90%)
+   - **Time**: ~20 minutes
+3. **Exercise 3**: Defense Testing (`week-4/exercises/exercise_3_defense_testing.py`)
+   - Apply model pruning defense against backdoor attacks
+   - Remove small-weight neurons to reduce backdoor effectiveness
+   - Compare pre/post defense accuracy and backdoor activation
+   - Evaluate defense effectiveness
+   - **Time**: ~15 minutes
+
+**Required Reading**: Sotiropoulos Ch. 8–10 (Data Poisoning, Backdoor Attacks, Defenses); Gu et al. (2017) "BadNets"; Chen et al. (2018) "Targeted Backdoor Attacks"
+**Deliverables**: Poisoned model demonstration, backdoor attack with >90% activation, defense evaluation results
 
 ---
 
 ## Week 5: Generative AI Vulnerabilities
-**Outcomes**: Craft jailbreaks, prompt injections; scan LLMs with garak.
+**Outcomes**: Understand jailbreaks and prompt injections through research; practice with CTF challenges; optionally use garak for LLM scanning.
 
-| Activity | Details | Time | Output |
-|--------|--------|------|--------|
-| **Study** | Garak overview. Map prompt injection → XSS. Read Sotiropoulos Ch. 6–7. | 1–2 hrs | `week5/garak_mapping.md` |
-| **Code** | Load Llama-2 (Hugging Face). Craft 10 jailbreak prompts (DAN, role-play, suffix). | 3 hrs | `week5/jailbreak_prompts.py` |
-| **Exercise** | Run `garak --model_type huggingface --model_name meta-llama/Llama-2-7b-chat-hf` with 10 probes. Log results. | 2–3 hrs | `week5/garak_scan.json`, `week5/garak_findings.md` |
+**Reading Exercises** (Research and CTF-based learning):
+1. **Reading Exercise 1**: Study ArXiv Research Papers
+   - Read at least 3 papers on prompt injection and jailbreak techniques
+   - Key papers: "Red Teaming the Mind of the Machine", "Hide Your Malicious Goal Into Benign Narratives", "SequentialBreak"
+   - Document key techniques, attack vectors, and defense strategies
+   - **Time**: ~4–5 hours
+   - **Output**: `week5/reading_notes.md`
+2. **Reading Exercise 2**: Review Expert Blogs
+   - Study Embrace the Red blog posts on LLM security
+   - Review InjectPrompt blog and Lakera blog resources
+   - Understand real-world examples and case studies
+   - **Time**: ~2 hours
+   - **Output**: `week5/blog_analysis.md`
+3. **CTF Practice**: Lakera Gandalf and Security Café Challenges
+   - Complete Lakera Gandalf prompt hacking challenges (progressive levels)
+   - Practice Security Café's AI Hacking Games (context switching, translation, etc.)
+   - Document techniques learned and success rates
+   - **Time**: ~3–4 hours
+   - **Output**: `week5/ctf_notes.md`, `week5/jailbreak_catalog.md`
+4. **Research Exercise**: Attack Methodology Analysis
+   - Analyze attack methodologies from research papers
+   - Create catalog of jailbreak techniques (DAN, role-play, indirect, etc.)
+   - Document attack chain flows and dependencies
+   - **Time**: ~2–3 hours
+   - **Output**: `week5/jailbreak_catalog.md`, `week5/attack_chain.md`
+5. **Optional Tool Usage**: garak and Purple Llama Scanning
+   - Run `garak` with 10+ probes on LLM model
+   - Run Purple Llama CyberSecEval benchmarks
+   - Analyze results and create findings report
+   - **Time**: ~2–3 hours
+   - **Output**: `week5/garak_scan.json`, `week5/garak_findings.md`
+
+**Required Reading**: Sotiropoulos Ch. 11–12 (Generative AI Vulnerabilities, LLM Security and Prompt Attacks); OWASP Top 10 for LLM Applications; ArXiv papers (see `week-5/exercises/README.md`)
+
+**Deliverables**: Reading notes, CTF practice documentation, jailbreak catalog, attack chain analysis, optional garak scan results
+
+**Note**: Week 5 uses reading materials and CTF challenges instead of coding exercises. See `week-5/exercises/README.md` for complete list of resources.
 
 ---
 
