@@ -176,26 +176,46 @@ correct_before = (original_pred_classes == y_test)
 correct_after = (pred_classes_adv == y_test)
 successful_attacks = correct_before & ~correct_after
 failed_attacks = ~correct_before & correct_after
+remained_correct = correct_before & correct_after
+remained_incorrect = ~correct_before & ~correct_after
+
+# Verify consistency: all samples should be accounted for
+total_accounted = successful_attacks.sum() + failed_attacks.sum() + remained_correct.sum() + remained_incorrect.sum()
+assert total_accounted == len(y_test), f"Logic error: {total_accounted} != {len(y_test)}"
 
 print(f"\nAttack success analysis:")
 print(f"  Samples correctly classified before attack: {correct_before.sum()}/{len(y_test)}")
 print(f"  Samples correctly classified after attack: {correct_after.sum()}/{len(y_test)}")
 print(f"  Successful attacks (correct -> incorrect): {successful_attacks.sum()}")
 print(f"  Samples where attack failed (incorrect -> correct): {failed_attacks.sum()}")
-print(f"  Samples that remained correct: {(correct_before & correct_after).sum()}")
-print(f"  Samples that remained incorrect: {(~correct_before & ~correct_after).sum()}")
+print(f"  Samples that remained correct: {remained_correct.sum()}")
+print(f"  Samples that remained incorrect: {remained_incorrect.sum()}")
+
+# Verify the math relationships
+print(f"\nVerification (should match):")
+print(f"  Correct before = Successful + Remained correct: {successful_attacks.sum() + remained_correct.sum()} == {correct_before.sum()}")
+print(f"  Correct after = Failed + Remained correct: {failed_attacks.sum() + remained_correct.sum()} == {correct_after.sum()}")
+print(f"  Total samples = All categories: {total_accounted} == {len(y_test)}")
 
 # Show some examples
 print("\n" + "-"*70)
 print("EXAMPLE RESULTS (first 15 samples)")
 print("-"*70)
-print(f"{'Sample':<8} {'Original':<12} {'Adversarial':<12} {'Actual':<10} {'Success':<10}")
+print(f"{'Sample':<8} {'Original':<12} {'Adversarial':<12} {'Actual':<10} {'Outcome':<20}")
 print("-"*70)
 for i in range(min(15, len(y_test))):
     orig_status = "CORRECT" if original_pred_classes[i] == y_test[i] else "WRONG"
     adv_status = "CORRECT" if pred_classes_adv[i] == y_test[i] else "WRONG"
-    attack_success = "YES" if successful_attacks[i] else "NO"
-    print(f"{i:<8} {original_pred_classes[i]:<3} ({orig_status:<8}) {pred_classes_adv[i]:<3} ({adv_status:<8}) {y_test[i]:<10} {attack_success:<10}")
+    # Determine outcome type
+    if successful_attacks[i]:
+        outcome = "SUCCESS"
+    elif failed_attacks[i]:
+        outcome = "FAILED (helped)"
+    elif remained_correct[i]:
+        outcome = "NO CHANGE (correct)"
+    else:  # remained_incorrect
+        outcome = "NO CHANGE (wrong)"
+    print(f"{i:<8} {original_pred_classes[i]:<3} ({orig_status:<8}) {pred_classes_adv[i]:<3} ({adv_status:<8}) {y_test[i]:<10} {outcome:<20}")
 
 # Confidence analysis
 print("\n" + "-"*70)
@@ -213,8 +233,22 @@ if successful_attacks.sum() > 0:
     print(f"  Original mean confidence: {original_confidences[successful_attacks].mean():.4f}")
     print(f"  Adversarial mean confidence: {adv_confidences[successful_attacks].mean():.4f}")
     print(f"  Mean confidence drop: {(original_confidences[successful_attacks] - adv_confidences[successful_attacks]).mean():.4f}")
+    
+    # Show which samples were successfully attacked
+    attacked_indices = np.where(successful_attacks)[0]
+    print(f"\n  Successfully attacked sample indices (first 10): {attacked_indices[:10].tolist()}")
+    if len(attacked_indices) > 10:
+        print(f"  ... and {len(attacked_indices) - 10} more")
+    
+    # Show prediction changes for successful attacks
+    print(f"\n  Prediction changes for successful attacks:")
+    print(f"    Original -> Adversarial (Actual label)")
+    for idx in attacked_indices[:5]:  # Show first 5 examples
+        print(f"    {original_pred_classes[idx]} -> {pred_classes_adv[idx]} ({y_test[idx]})")
+else:
+    print(f"\nNo successful attacks found (attack did not flip any correct predictions)")
 
 print("\n" + "="*70)
-print("Analysis complete!")
+print("Analysis complete")
 print("="*70)
 
