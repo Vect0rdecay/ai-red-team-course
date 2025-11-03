@@ -96,7 +96,6 @@ Your research should cover adversarial patch attacks in **at least 3 different d
 
 Create `week-1/case_study_analysis.md` with:
 
-```markdown
 # Adversarial Patch Attacks - Case Study Analysis
 
 ## Research Overview
@@ -722,8 +721,6 @@ autonomous UAV systems.
 - **Thermal Property Manipulation**: For infrared systems, test patches that manipulate thermal properties (not just visual appearance).
 - **Consistency Check Bypass**: Test whether patches can bypass cross-modal consistency checks that defenses might implement.
 - **Redundancy Defeat**: Test unified patches that simultaneously attack both modalities, defeating redundancy assumptions.
-
-```
 
 ## Resources
 
