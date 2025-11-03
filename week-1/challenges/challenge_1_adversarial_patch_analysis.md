@@ -6,11 +6,15 @@
 
 ## Objective
 
-Research and analyze adversarial patch attacks across multiple domains to understand how these physical attacks manifest in real-world ML systems. This connects Week 1's foundational concepts to diverse real-world attack scenarios beyond the commonly discussed examples.
+Research and analyze adversarial patch attacks across multiple domains to understand how these
+physical attacks manifest in real-world ML systems. This connects Week 1's foundational concepts
+to diverse real-world attack scenarios beyond the commonly discussed examples.
 
 ## Background
 
-Adversarial patch attacks involve placing physical objects (stickers, patches, or accessories) in the environment that cause ML vision systems to misclassify or fail. These attacks are particularly concerning because they:
+Adversarial patch attacks involve placing physical objects (stickers, patches, or accessories) in
+the environment that cause ML vision systems to misclassify or fail. These attacks are
+particularly concerning because they:
 
 - Require no digital access to the model
 - Work across different model architectures
@@ -96,40 +100,104 @@ Create `week-1/case_study_analysis.md` with:
 # Adversarial Patch Attacks - Case Study Analysis
 
 ## Research Overview
-Adversarial patch attacks represent a attack vector against Deep Learning (DL) systems, fundamentally involving the introduction of subtle, locally bounded perturbations into input data (either digitally or as physical artifacts like stickers, paint on vehicles etc) to deceive models during the inference stage. In the domain of Autonomous Vehicles (AVs), these attacks primarily target camera-based perception systems to disrupt crucial functions like traffic sign recognition (TSR) and road line detection, potentially causing misclassification or complete evasion of essential objects. Specific examples in AVs include Translucent Patches (TransPatch) designed to be placed on a camera's lens to hide target objects like stop signs; attacks utilizing Meaningful Adversarial Stickers that manipulate position and rotation; and the APARATE technique, which specifically disrupts Monocular Depth Estimation (MDE) by generating incorrect depth estimates or creating the illusion that an object has disappeared. Furthermore, the concept of adversarial patches extends beyond vehicular control, demonstrating applicability in other domains such as black-box attacks on gait identification in autonomous surveillance systems, as well as attacks designed against face recognition and image retrieval systems.
 
-A novel and particularly advanced category of these threats involves Dynamic Adversarial Attacks, which focus on manipulating the AV's decision-making system by displaying an adversarial patch on a screen mounted on a moving vehicle (the "patch car"), rather than affixing it directly to the target object (e.g., a traffic sign). This approach aims to deceive the target AV into misclassifying a non-restrictive sign (like "Go-straight") as a restrictive one ("Stop sign"), thereby altering critical actions during multi-vehicle interactions such as intersection crossing. This is akin to something like active signal jamming in the RF world of comms. To bridge the gap between simulation and real-world conditions, this technique utilizes a Screen Image Transformation Network (SIT-Net) to model visual changes, such as color and contrast transformation, caused by displaying the patch on a screen and capturing it with a camera. The success rate of these dynamic patches is notably higher than static or printed patches, indicating increased resilience to varying distances and perspectives.
+Adversarial patch attacks represent an attack vector against Deep Learning (DL) systems,
+fundamentally involving the introduction of subtle, locally bounded perturbations into input data
+(either digitally or as physical artifacts like stickers, paint on vehicles etc) to deceive models
+during the inference stage.
 
-The breadth of patch attacks also includes techniques specifically tailored for Unmanned Aerial Vehicles (UAVs) object detection, emphasizing robustness against UAV-specific challenges like high camera perspective, viewing angle, distance variability, and brightness changes. These specialized adversarial patches are generated using robust training schemes incorporating multiple transformations, including adjustments for printability (using a multivariate linear Gaussian mixture of additive and multiplicative noises), scene intensity matching (adjusting contrast, brightness, and noise), and affine transformations (scaling and rotation). Critically, this generation scheme facilitates transferability; experiments show that patches built against one model can successfully attack other Deep Neural Network (DNN) models with different initializations (up to 75% attack success rate) and distinct architectures (up to 78% attack success rate) in a gray-box setting, significantly increasing the practical threat posed to autonomous UAV systems.
+In the domain of Autonomous Vehicles (AVs), these attacks primarily target camera-based perception
+systems to disrupt crucial functions like traffic sign recognition (TSR) and road line detection,
+potentially causing misclassification or complete evasion of essential objects. Specific examples in
+AVs include:
+
+- Translucent Patches (TransPatch) designed to be placed on a camera's lens to hide target objects
+  like stop signs
+- Attacks utilizing Meaningful Adversarial Stickers that manipulate position and rotation
+- The APARATE technique, which specifically disrupts Monocular Depth Estimation (MDE) by generating
+  incorrect depth estimates or creating the illusion that an object has disappeared
+
+Furthermore, the concept of adversarial patches extends beyond vehicular control, demonstrating
+applicability in other domains such as black-box attacks on gait identification in autonomous
+surveillance systems, as well as attacks designed against face recognition and image retrieval
+systems.
+
+A novel and particularly advanced category of these threats involves Dynamic Adversarial Attacks,
+which focus on manipulating the AV's decision-making system by displaying an adversarial patch on
+a screen mounted on a moving vehicle (the "patch car"), rather than affixing it directly to the
+target object (e.g., a traffic sign). This approach aims to deceive the target AV into
+misclassifying a non-restrictive sign (like "Go-straight") as a restrictive one ("Stop sign"),
+thereby altering critical actions during multi-vehicle interactions such as intersection crossing.
+This is akin to something like active signal jamming in the RF world of comms.
+
+To bridge the gap between simulation and real-world conditions, this technique utilizes a Screen
+Image Transformation Network (SIT-Net) to model visual changes, such as color and contrast
+transformation, caused by displaying the patch on a screen and capturing it with a camera. The
+success rate of these dynamic patches is notably higher than static or printed patches, indicating
+increased resilience to varying distances and perspectives.
+
+The breadth of patch attacks also includes techniques specifically tailored for Unmanned Aerial
+Vehicles (UAVs) object detection, emphasizing robustness against UAV-specific challenges like high
+camera perspective, viewing angle, distance variability, and brightness changes.
+
+These specialized adversarial patches are generated using robust training schemes incorporating
+multiple transformations:
+
+- **Printability adjustments**: Using a multivariate linear Gaussian mixture of additive and
+  multiplicative noises to ensure patches print correctly
+- **Scene intensity matching**: Adjusting contrast, brightness, and noise to match real-world
+  lighting conditions
+- **Affine transformations**: Incorporating scaling and rotation to handle perspective changes
+
+Critically, this generation scheme facilitates transferability; experiments show that patches built
+against one model can successfully attack other Deep Neural Network (DNN) models with different
+initializations (up to 75% attack success rate) and distinct architectures (up to 78% attack
+success rate) in a gray-box setting, significantly increasing the practical threat posed to
+autonomous UAV systems.
 
 
 ## Attack Comparison Matrix
 
 | Domain | Attack Method | Target System | Patch Type | Physical Constraints | Success Rate |
 |--------|--------------|---------------|------------|---------------------|--------------|
-| Autonomous Vehicles | TransPatch | Camera-based traffic sign recognition (TSR) | Translucent patch on camera lens | Must be placed directly on camera lens; requires physical access to vehicle | High success rate for hiding stop signs from detection |
-| Autonomous Vehicles | Dynamic Adversarial Attack (SIT-Net) | Multi-vehicle AV decision-making systems | Screen-displayed patch on moving "patch car" | Requires moving vehicle with screen; needs SIT-Net modeling for color/contrast transformation | Higher than static patches; more resilient to distance/perspective changes |
-| Autonomous Vehicles | Meaningful Adversarial Stickers | Traffic sign recognition | Position/rotation-aware stickers | Must be affixed to traffic signs; requires access to sign location | Effective with proper placement and rotation |
-| Autonomous Vehicles | APARATE / SSAP | Monocular Depth Estimation (MDE) systems | Shape-sensitive adversarial patches | Shape and scale considerations; affects regions beyond immediate proximity | Up to 99% depth estimation error in targeted regions (CNN-based MDE) |
-| Autonomous Vehicles | AoR (Adversary is on the Road) | Visual SLAM (vSLAM) systems | Unnoticeable adversarial patches on road surface | Must be placed on road surface; exploits texture sensitivity | Significant localization errors; alters mapping without detection |
-| Unmanned Aerial Vehicles (UAVs) | Robust Adversarial Patches | UAV object detection systems | Printed patches with robust training | Must withstand high camera perspective, viewing angle, distance variability, brightness changes | 75% success rate (cross-initialization); 78% success rate (cross-architecture) in gray-box setting |
-| Surveillance Systems | Adversarial Patch Attack (Thys et al., 2019) | Person detection in surveillance cameras | Printed patches on clothing or accessories | Must be visible to camera; can be worn as clothing accessory | Effective at evading person detection; can cover <1% of image area |
-| Face Recognition | Adversarial Accessories | Face recognition systems | Patches on glasses, hats, or face accessories | Must be worn on face/head; should appear natural | Effective at evading recognition or causing misidentification |
-| Cross-Modal Systems | Unified Adversarial Patches | Visible + Infrared sensor systems | Single patch attacking both modalities | Must be effective in both visible and IR spectra | Simultaneous evasion in both modalities |
+| Autonomous Vehicles | TransPatch | Traffic sign recognition | Translucent patch on lens | Requires physical access to camera | High - hides stop signs |
+| Autonomous Vehicles | Dynamic Attack (SIT-Net) | Multi-vehicle AV systems | Screen-displayed patch | Moving vehicle with screen needed | Higher than static patches |
+| Autonomous Vehicles | Meaningful Adversarial Stickers | Traffic sign recognition | Position/rotation stickers | Requires access to sign location | Effective with placement |
+| Autonomous Vehicles | APARATE / SSAP | Monocular Depth Estimation | Shape-sensitive patches | Affects regions beyond proximity | Up to 99% depth error |
+| Autonomous Vehicles | AoR | Visual SLAM systems | Patches on road surface | Must be placed on road | Significant localization errors |
+| UAVs | Robust Adversarial Patches | UAV object detection | Printed with robust training | Extreme viewing angles/distances | 75-78% cross-model success |
+| Surveillance Systems | Thys et al. (2019) | Person detection cameras | Patches on clothing/accessories | Worn as clothing accessory | Effective, <1% image coverage |
+| Face Recognition | Adversarial Accessories | Face recognition systems | Patches on accessories | Must appear natural | Effective evasion |
+| Cross-Modal Systems | Unified Patches | Visible + Infrared sensors | Single patch, dual modality | Must work in both spectra | Simultaneous evasion |
 
 ## Detailed Attack Analysis
 
 ### Attack 1: Dynamic Adversarial Attacks on Autonomous Vehicles (SIT-Net)
 
-- **Attack Method**: Dynamic adversarial attacks that manipulate AV decision-making by displaying an adversarial patch on a screen mounted on a moving vehicle (the "patch car"), rather than affixing patches directly to target objects like traffic signs. This approach is analogous to active signal jamming in RF communications.
+- **Attack Method**: Dynamic adversarial attacks that manipulate AV decision-making by displaying an
+  adversarial patch on a screen mounted on a moving vehicle (the "patch car"), rather than
+  affixing patches directly to target objects like traffic signs. This approach is analogous to
+  active signal jamming in RF communications.
 
-- **Target System**: Multi-vehicle AV decision-making systems, specifically traffic sign recognition systems that must make critical decisions during intersection crossings and multi-vehicle interactions.
+- **Target System**: Multi-vehicle AV decision-making systems, specifically traffic sign
+  recognition systems that must make critical decisions during intersection crossings and
+  multi-vehicle interactions.
 
-- **Patch Design**: The patch is optimized for display on a screen and capture by a camera. The Screen Image Transformation Network (SIT-Net) models visual changes such as color and contrast transformation that occur when displaying the patch on a screen and capturing it with a camera. This bridges the gap between simulation and real-world conditions.
+- **Patch Design**: The patch is optimized for display on a screen and capture by a camera. The
+  Screen Image Transformation Network (SIT-Net) models visual changes such as color and contrast
+  transformation that occur when displaying the patch on a screen and capturing it with a camera.
+  This bridges the gap between simulation and real-world conditions.
 
-- **Physical Deployment**: Requires a moving vehicle equipped with a display screen. The patch is displayed on this screen, which must be positioned such that the target AV's camera system captures it. The dynamic nature allows the patch to be effective at varying distances and perspectives.
+- **Physical Deployment**: Requires a moving vehicle equipped with a display screen. The patch is
+  displayed on this screen, which must be positioned such that the target AV's camera system
+  captures it. The dynamic nature allows the patch to be effective at varying distances and
+  perspectives.
 
-- **Results**: Success rate is notably higher than static or printed patches, indicating increased resilience to varying distances and perspectives. The attack can cause a target AV to misclassify a non-restrictive sign (like "Go-straight") as a restrictive one ("Stop sign"), thereby altering critical actions during multi-vehicle interactions such as intersection crossing.
+- **Results**: Success rate is notably higher than static or printed patches, indicating increased
+  resilience to varying distances and perspectives. The attack can cause a target AV to
+  misclassify a non-restrictive sign (like "Go-straight") as a restrictive one ("Stop sign"),
+  thereby altering critical actions during multi-vehicle interactions such as intersection
+  crossing.
 
 ### Attack 2: UAV-Specific Robust Adversarial Patches
 
@@ -142,7 +210,9 @@ The breadth of patch attacks also includes techniques specifically tailored for 
   - **Scene intensity matching**: Adjusting contrast, brightness, and noise to match real-world lighting conditions
   - **Affine transformations**: Incorporating scaling and rotation to handle perspective changes
 
-- **Physical Deployment**: Patches must be printed and placed in the environment such that they are visible to UAV cameras. They must withstand high camera perspective, viewing angle variability, distance changes, and brightness variations typical of UAV operations.
+- **Physical Deployment**: Patches must be printed and placed in the environment such that they
+  are visible to UAV cameras. They must withstand high camera perspective, viewing angle
+  variability, distance changes, and brightness variations typical of UAV operations.
 
 - **Results**: Demonstrates strong transferability properties:
   - **Cross-initialization**: Patches built against one model achieve up to 75% attack success rate against other DNN models with different initializations
