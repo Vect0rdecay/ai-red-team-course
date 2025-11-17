@@ -80,13 +80,13 @@ def create_sequences(text, seq_length=50):
     # Convert characters to indices using char_to_idx dictionary
     
     for i in range(len(text) - seq_length):
-        # TODO: Extract sequence and next character
-        seq = None  # Extract seq_length characters starting at position i
-        next_char = None  # Extract the character immediately after the sequence
+        # Extract sequence and next character
+        seq = text[i:i + seq_length]  # Extract seq_length characters starting at position i
+        next_char = text[i + seq_length]  # Extract the character immediately after the sequence
         
-        # TODO: Convert to indices and append to X and y
-        X.append(None)  # Convert seq to list of indices
-        y.append(None)  # Convert next_char to index
+        # Convert to indices and append to X and y
+        X.append([char_to_idx[ch] for ch in seq])  # Convert seq to list of indices
+        y.append(char_to_idx[next_char])  # Convert next_char to index
     
     return torch.tensor(X), torch.tensor(y)
 
@@ -95,7 +95,7 @@ X, y = create_sequences(text, seq_length)
 
 print(f"Created {len(X)} training sequences")
 print(f"Sequence length: {seq_length}")
-print(f"Example sequence: {''.join([idx_to_char[i] for i in X[0]])}")
+print(f"Example sequence: {''.join([idx_to_char[i.item()] for i in X[0]])}")
 print(f"Next character: {idx_to_char[y[0].item()]}")
 
 # ============================================================================
@@ -141,22 +141,19 @@ class CharRNN(nn.Module):
         
     def forward(self, x, hidden=None):
         # x: (batch, seq_length) - batch of character sequences
-        # TODO: Apply embedding layer: Turn character indices into dense vectors
+        # Apply embedding layer: Turn character indices into dense vectors
         # Each character becomes a learnable 128-dim vector
-        # HINT: self.embedding(x) converts character indices to dense vectors
-        x = None
+        x = self.embedding(x)
         
-        # TODO: Apply LSTM layer: Process sequence and build memory
+        # Apply LSTM layer: Process sequence and build memory
         # LSTM processes each character in sequence, building context
         # Returns: output at each step, and hidden state (memory)
-        # HINT: self.lstm(x, hidden) processes the sequence
-        lstm_out, hidden = None, None
+        lstm_out, hidden = self.lstm(x, hidden)
         
-        # TODO: Get final output and apply fully connected layer
+        # Get final output and apply fully connected layer
         # Take the last timestep's output (final memory state)
         # Convert to probabilities for each character
-        # HINT: Use lstm_out[:, -1, :] to get last timestep, then apply self.fc
-        out = None
+        out = self.fc(lstm_out[:, -1, :])
         
         return out, hidden
     
@@ -190,7 +187,7 @@ print(f"Training for {num_epochs} epochs...")
 
 # Check if sequences were created properly
 if len(X) == 0:
-    print("\n❌ ERROR: No training sequences created!")
+    print("\n ERROR: No training sequences created!")
     print("   Please complete the TODO in create_sequences() function.")
     exit()
 
@@ -214,16 +211,16 @@ for epoch in range(num_epochs):
             batch_X = X[batch_indices]
             batch_y = y[batch_indices]
             
-            # TODO: Forward pass
-            # 1. Zero gradients: optimizer.zero_grad()
-            # 2. Initialize hidden state: model.init_hidden(len(batch_X))
-            # 3. Get model output: model(batch_X, hidden)
-            # 4. Calculate loss: criterion(output, batch_y)
+            # Forward pass
+            optimizer.zero_grad()  # 1. Zero gradients
+            hidden = model.init_hidden(len(batch_X))  # 2. Initialize hidden state
+            output, hidden = model(batch_X, hidden)  # 3. Get model output
+            loss = criterion(output, batch_y)  # 4. Calculate loss
             
-            # TODO: Backward pass
-            # 1. Compute gradients: loss.backward()
-            # 2. Clip gradients: torch.nn.utils.clip_grad_norm_(model.parameters(), 5)
-            # 3. Update weights: optimizer.step()
+            # Backward pass
+            loss.backward()  # 1. Compute gradients
+            torch.nn.utils.clip_grad_norm_(model.parameters(), 5)  # 2. Clip gradients
+            optimizer.step()  # 3. Update weights
             
             epoch_loss += loss.item()
         
@@ -234,7 +231,7 @@ for epoch in range(num_epochs):
         if (epoch + 1) % 20 == 0:
             print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {avg_loss:.4f}")
     except (AttributeError, RuntimeError, TypeError) as e:
-        print(f"\n❌ ERROR during training: {e}")
+        print(f"\n ERROR during training: {e}")
         print("\nCheck your TODO implementations:")
         print("  - Did you implement create_sequences()?")
         print("  - Did you implement the model forward pass?")
@@ -292,24 +289,20 @@ def generate_text(model, start_string, length=100, temperature=1.0):
         
         # Now generate NEW characters one at a time
         for _ in range(length):
-            # TODO: Get next character prediction
+            # Get next character prediction
             # Ask model: given current context, what's the next character?
-            # 1. Get model output for last character: model(input_seq[:, -1:], hidden)
+            output, hidden = model(input_seq[:, -1:], hidden)
             
-            # TODO: Apply temperature and sample
+            # Apply temperature and sample
             # Temperature controls randomness in generation
-            # 1. Divide output by temperature (higher temp = more uniform probabilities)
-            # 2. Apply softmax to convert to probabilities (sums to 1)
-            # 3. Sample from probability distribution (pick a character randomly based on probabilities)
+            output = output / temperature  # 1. Divide by temperature
+            probs = torch.nn.functional.softmax(output, dim=1)  # 2. Apply softmax
+            next_char_idx = torch.multinomial(probs, 1).item()  # 3. Sample from distribution
             
-            # TODO: Convert to character and add to sequence
-            # Add the new character and use it as input for next iteration
-            # 1. Convert index to character: idx_to_char[next_char_idx]
-            # 2. Add to generated list (for output)
-            # 3. Append to input_seq for next iteration (feed back into model)
-            
-            generated.append(None)  # Add generated character
-            input_seq = None  # Update input sequence
+            # Convert to character and add to sequence
+            next_char = idx_to_char[next_char_idx]  # 1. Convert index to character
+            generated.append(next_char)  # 2. Add to generated list
+            input_seq = torch.cat([input_seq, torch.tensor([[next_char_idx]])], dim=1)  # 3. Update input sequence
     
     return ''.join(generated)  # Convert list of chars to string
 
